@@ -1,320 +1,288 @@
-
 <!DOCTYPE html>
-<html lang="es-AR">
+<html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <title>Plataforma Bancaria – Entorno Interno</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <title>Interfaz Bancaria Institucional — Simulación Académica</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    /* =========================
-       ESTILO INSTITUCIONAL BANCARIO
-       ========================= */
+    <style>
+        /* ==============================
+           ESTILO INSTITUCIONAL BANCARIO
+           ============================== */
 
-    :root {
-      --color-primario: #0a2a43;
-      --color-secundario: #114d7a;
-      --color-acento: #1f7db8;
-      --color-fondo: #f4f6f8;
-      --color-texto: #1a1a1a;
-      --color-gris: #6b7280;
-      --color-borde: #d1d5db;
-      --color-exito: #1f9d55;
-    }
+        :root {
+            --azul-institucional: #0a2a43;
+            --azul-secundario: #123d5a;
+            --gris-claro: #f2f4f7;
+            --gris-medio: #d1d5db;
+            --texto-principal: #1f2933;
+            --texto-secundario: #4b5563;
+            --blanco: #ffffff;
+        }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
 
-    body {
-      font-family: "Segoe UI", Roboto, Arial, sans-serif;
-      background-color: var(--color-fondo);
-      color: var(--color-texto);
-      line-height: 1.4;
-    }
+        body {
+            background-color: var(--gris-claro);
+            color: var(--texto-principal);
+            line-height: 1.5;
+        }
 
-    header {
-      background-color: var(--color-primario);
-      color: #ffffff;
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+        header {
+            background-color: var(--azul-institucional);
+            color: var(--blanco);
+            padding: 20px;
+            text-align: center;
+        }
 
-    header h1 {
-      font-size: 20px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
+        header h1 {
+            font-size: 1.4rem;
+            letter-spacing: 0.5px;
+        }
 
-    header span {
-      font-size: 13px;
-      opacity: 0.9;
-    }
+        header p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
 
-    main {
-      max-width: 1200px;
-      margin: 30px auto;
-      padding: 0 30px;
-    }
+        main {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 20px;
+        }
 
-    .panel {
-      background-color: #ffffff;
-      border: 1px solid var(--color-borde);
-      border-radius: 6px;
-      padding: 25px;
-      margin-bottom: 30px;
-    }
+        .panel {
+            background-color: var(--blanco);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
 
-    .panel h2 {
-      font-size: 18px;
-      margin-bottom: 15px;
-      color: var(--color-primario);
-    }
+        .panel h2 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: var(--azul-secundario);
+            border-bottom: 1px solid var(--gris-medio);
+            padding-bottom: 8px;
+        }
 
-    .saldo {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+        .saldo-principal {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
 
-    .saldo .monto {
-      font-size: 28px;
-      font-weight: 600;
-      color: var(--color-secundario);
-    }
+        .saldo-monto {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--azul-institucional);
+        }
 
-    .datos-cuenta {
-      margin-top: 10px;
-      font-size: 13px;
-      color: var(--color-gris);
-    }
+        .estado-cuenta {
+            font-size: 0.9rem;
+            color: green;
+            font-weight: 500;
+        }
 
-    /* =========================
-       COMPROBANTE TRANSFERENCIA
-       ========================= */
+        .detalle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
 
-    .comprobante {
-      border: 1px solid var(--color-borde);
-      border-radius: 6px;
-      padding: 25px;
-    }
+        .detalle-item {
+            font-size: 0.9rem;
+        }
 
-    .estado {
-      font-weight: 600;
-      color: var(--color-exito);
-      margin-bottom: 20px;
-    }
+        .detalle-item span {
+            display: block;
+            font-weight: 600;
+            color: var(--texto-secundario);
+            margin-bottom: 3px;
+        }
 
-    .fila {
-      display: flex;
-      justify-content: space-between;
-      padding: 6px 0;
-      border-bottom: 1px solid #eef0f2;
-      font-size: 14px;
-    }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
 
-    .fila:last-child {
-      border-bottom: none;
-    }
+        table thead {
+            background-color: var(--gris-claro);
+        }
 
-    .fila span {
-      color: var(--color-gris);
-    }
+        table th, table td {
+            padding: 10px;
+            border-bottom: 1px solid var(--gris-medio);
+            text-align: left;
+        }
 
-    /* =========================
-       TABLA MOVIMIENTOS
-       ========================= */
+        .estado-ok {
+            color: green;
+            font-weight: 600;
+        }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 15px;
-      font-size: 14px;
-    }
+        .comprobante {
+            border: 1px dashed var(--gris-medio);
+            padding: 15px;
+            margin-top: 15px;
+            font-size: 0.85rem;
+        }
 
-    thead {
-      background-color: var(--color-secundario);
-      color: #ffffff;
-    }
+        .qr {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--texto-secundario);
+        }
 
-    th, td {
-      padding: 10px;
-      text-align: left;
-      border-bottom: 1px solid var(--color-borde);
-    }
+        .qr-box {
+            width: 120px;
+            height: 120px;
+            margin: 10px auto;
+            border: 2px solid var(--gris-medio);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: var(--texto-secundario);
+        }
 
-    th {
-      font-weight: 500;
-      font-size: 13px;
-    }
+        .nota-legal {
+            margin-top: 30px;
+            background-color: #fffbe6;
+            border-left: 4px solid #facc15;
+            padding: 15px;
+            font-size: 0.85rem;
+            color: #78350f;
+        }
 
-    tbody tr:hover {
-      background-color: #f0f4f8;
-    }
+        footer {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--texto-secundario);
+            margin: 20px 0;
+        }
 
-    /* =========================
-       FOOTER LEGAL
-       ========================= */
-
-    footer {
-      margin-top: 50px;
-      padding: 20px 40px;
-      font-size: 11px;
-      color: var(--color-gris);
-      background-color: #ffffff;
-      border-top: 1px solid var(--color-borde);
-    }
-
-    footer p {
-      max-width: 1200px;
-      margin: auto;
-    }
-  </style>
+        @media (max-width: 600px) {
+            .saldo-monto {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-  <!-- =========================
-       ENCABEZADO INSTITUCIONAL
-       ========================= -->
-  <header>
+<header>
     <h1>Plataforma Bancaria Institucional</h1>
-    <span>Acceso Operativo Interno</span>
-  </header>
+    <p>Interfaz académica de simulación financiera — Uso demostrativo</p>
+</header>
 
-  <main>
+<main>
 
-    <!-- =========================
-         PANEL DE SALDO
-         ========================= -->
+    <!-- PANEL SALDO -->
     <section class="panel">
-      <h2>Resumen de Cuenta</h2>
-      <div class="saldo">
-        <div>
-          <div class="monto">$ 45.320.000,00</div>
-          <div class="datos-cuenta">
-            Cuenta Corriente en Pesos · CBU 2850590940090412345678<br />
-            Alias: EMPRESA.OPERATIVA.AR<br />
-            Titular: Sociedad Operativa Argentina S.A.
-          </div>
+        <h2>Resumen de Cuenta</h2>
+        <div class="saldo-principal">
+            <div class="saldo-monto">ARS 40.000.000,00</div>
+            <div class="estado-cuenta">Cuenta activa – Operativa (representación visual)</div>
         </div>
-      </div>
     </section>
 
-    <!-- =========================
-         COMPROBANTE TRANSFERENCIA
-         ========================= -->
+    <!-- DETALLE DE CUENTA -->
     <section class="panel">
-      <h2>Comprobante de Transferencia</h2>
-
-      <div class="comprobante">
-        <div class="estado">Estado de la operación: Acreditada</div>
-
-        <div class="fila">
-          <strong>Monto transferido</strong>
-          <strong>$ 30.000.000,00 ARS</strong>
+        <h2>Detalle de la Cuenta</h2>
+        <div class="detalle-grid">
+            <div class="detalle-item">
+                <span>Tipo de Cuenta</span>
+                Cuenta Bancaria Institucional
+            </div>
+            <div class="detalle-item">
+                <span>CBU</span>
+                0000000000000000000000 (simulado)
+            </div>
+            <div class="detalle-item">
+                <span>Alias</span>
+                CUENTA.INSTITUCIONAL.DEMO
+            </div>
+            <div class="detalle-item">
+                <span>Código MORFE</span>
+                MORFE-INT-40M-ARS-001
+            </div>
+            <div class="detalle-item">
+                <span>Entidad Emisora</span>
+                Entidad Financiera Institucional Genérica
+            </div>
+            <div class="detalle-item">
+                <span>Fecha de Apertura</span>
+                01/01/2025
+            </div>
         </div>
-
-        <div class="fila">
-          <span>Fecha y hora</span>
-          <strong>14/01/2026 – 16:42:18</strong>
-        </div>
-
-        <div class="fila">
-          <span>Número de operación</span>
-          <strong>TRX-AR-20260114-009874</strong>
-        </div>
-
-        <div class="fila">
-          <span>Cuenta origen</span>
-          <strong>Sociedad Operativa Argentina S.A.</strong>
-        </div>
-
-        <div class="fila">
-          <span>CBU origen</span>
-          <strong>2850590940090412345678</strong>
-        </div>
-
-        <div class="fila">
-          <span>Cuenta destino</span>
-          <strong>Servicios Integrales del Sur S.R.L.</strong>
-        </div>
-
-        <div class="fila">
-          <span>CBU destino</span>
-          <strong>0140027301009876543210</strong>
-        </div>
-
-        <div class="fila">
-          <span>Entidad destino</span>
-          <strong>Banco Receptor Nacional</strong>
-        </div>
-
-        <div class="fila">
-          <span>Concepto</span>
-          <strong>Pago por servicios profesionales</strong>
-        </div>
-      </div>
     </section>
 
-    <!-- =========================
-         MOVIMIENTOS RECIENTES
-         ========================= -->
+    <!-- TRANSFERENCIAS -->
     <section class="panel">
-      <h2>Últimos Movimientos</h2>
+        <h2>Transferencias Bancarias (Simulación)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Tipo</th>
+                    <th>Monto</th>
+                    <th>Concepto</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>14/01/2026 14:32</td>
+                    <td>Saliente</td>
+                    <td>ARS 5.000.000,00</td>
+                    <td>Transferencia institucional simulada</td>
+                    <td class="estado-ok">Procesada</td>
+                </tr>
+                <tr>
+                    <td>12/01/2026 09:10</td>
+                    <td>Entrante</td>
+                    <td>ARS 8.500.000,00</td>
+                    <td>Acreditación demostrativa</td>
+                    <td class="estado-ok">Acreditada</td>
+                </tr>
+            </tbody>
+        </table>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Fecha</th>
-            <th>Descripción</th>
-            <th>Referencia</th>
-            <th>Importe</th>
-            <th>Saldo</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>14/01/2026</td>
-            <td>Transferencia enviada</td>
-            <td>TRX-009874</td>
-            <td>- $ 30.000.000,00</td>
-            <td>$ 45.320.000,00</td>
-          </tr>
-          <tr>
-            <td>13/01/2026</td>
-            <td>Acreditación</td>
-            <td>DEP-772114</td>
-            <td>+ $ 12.500.000,00</td>
-            <td>$ 75.320.000,00</td>
-          </tr>
-          <tr>
-            <td>10/01/2026</td>
-            <td>Pago de impuestos</td>
-            <td>AFIP-88219</td>
-            <td>- $ 4.180.000,00</td>
-            <td>$ 62.820.000,00</td>
-          </tr>
-        </tbody>
-      </table>
+        <div class="comprobante">
+            <strong>Comprobante de Operación (Simulado)</strong><br>
+            Número de comprobante: COMP-INT-00045872<br>
+            Referencia bancaria: REF-DEMO-ARS-40M<br>
+            CBU origen/destino: Datos simulados<br>
+            Fecha de emisión: 14/01/2026
+        </div>
+
+        <div class="qr">
+            Identificador visual QR / MORFE
+            <div class="qr-box">QR<br>SIMULADO</div>
+        </div>
     </section>
 
-  </main>
+    <!-- NOTA LEGAL -->
+    <div class="nota-legal">
+        <strong>Nota legal:</strong><br>
+        Esta interfaz es de carácter académico, demostrativo e institucional. No constituye un sistema bancario real, no ejecuta transacciones financieras reales ni representa una entidad financiera operativa. Todos los datos, montos e identificadores son simulados con fines educativos y de presentación.
+    </div>
 
-  <!-- =========================
-       FOOTER LEGAL TÉCNICO
-       ========================= -->
-  <footer>
-    <p>
-      Sistema de visualización operativa para entornos internos de validación bancaria.
-      La información expuesta corresponde a escenarios de prueba y control institucional.
-      Este entorno no establece conexión directa con sistemas financieros productivos.
-    </p>
-  </footer>
+</main>
+
+<footer>
+    © 2026 — Prototipo bancario institucional | Simulación visual profesional
+</footer>
 
 </body>
 </html>
