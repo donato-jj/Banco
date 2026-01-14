@@ -1,326 +1,321 @@
 
+
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-AR">
 <head>
   <meta charset="UTF-8" />
-  <title>Cuenta Bancaria Obligatoria — Simulación Académica</title>
+  <title>Plataforma Bancaria – Entorno Interno</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- =========================
-       ESTILOS INSTITUCIONALES
-       ========================= -->
   <style>
+    /* =========================
+       ESTILO INSTITUCIONAL BANCARIO
+       ========================= */
+
     :root {
-      --azul-bancario: #0b3c5d;
-      --azul-secundario: #1d6fa5;
-      --gris-institucional: #f2f4f6;
-      --texto-principal: #1e1e1e;
-      --alerta: #8a1f1f;
+      --color-primario: #0a2a43;
+      --color-secundario: #114d7a;
+      --color-acento: #1f7db8;
+      --color-fondo: #f4f6f8;
+      --color-texto: #1a1a1a;
+      --color-gris: #6b7280;
+      --color-borde: #d1d5db;
+      --color-exito: #1f9d55;
     }
 
     * {
       box-sizing: border-box;
-      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
-      background: var(--gris-institucional);
-      color: var(--texto-principal);
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      background-color: var(--color-fondo);
+      color: var(--color-texto);
+      line-height: 1.4;
     }
 
     header {
-      background: var(--azul-bancario);
-      color: white;
-      padding: 20px;
-      text-align: center;
+      background-color: var(--color-primario);
+      color: #ffffff;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     header h1 {
-      margin: 0;
-      font-size: 1.6rem;
+      font-size: 20px;
       font-weight: 600;
+      letter-spacing: 0.5px;
     }
 
-    header p {
-      margin: 5px 0 0;
-      font-size: 0.9rem;
+    header span {
+      font-size: 13px;
       opacity: 0.9;
     }
 
     main {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 30px auto;
-      padding: 0 20px 40px;
+      padding: 0 30px;
     }
 
-    section {
-      background: white;
+    .panel {
+      background-color: #ffffff;
+      border: 1px solid var(--color-borde);
       border-radius: 6px;
-      padding: 20px;
-      margin-bottom: 25px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      padding: 25px;
+      margin-bottom: 30px;
     }
 
-    section h2 {
-      margin-top: 0;
-      color: var(--azul-bancario);
-      font-size: 1.2rem;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 8px;
+    .panel h2 {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: var(--color-primario);
     }
 
     .saldo {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--azul-secundario);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    .nota {
-      font-size: 0.85rem;
-      color: #555;
-      margin-top: 5px;
+    .saldo .monto {
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--color-secundario);
     }
 
-    .alerta {
-      background: #fff1f1;
-      border-left: 4px solid var(--alerta);
-      padding: 12px;
-      font-size: 0.85rem;
-      margin-top: 15px;
+    .datos-cuenta {
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--color-gris);
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
+    /* =========================
+       COMPROBANTE TRANSFERENCIA
+       ========================= */
+
+    .comprobante {
+      border: 1px solid var(--color-borde);
+      border-radius: 6px;
+      padding: 25px;
     }
 
-    label {
-      display: block;
-      font-size: 0.85rem;
-      margin-bottom: 4px;
+    .estado {
+      font-weight: 600;
+      color: var(--color-exito);
+      margin-bottom: 20px;
     }
 
-    input, button {
-      width: 100%;
-      padding: 10px;
-      font-size: 0.9rem;
-      border-radius: 4px;
-      border: 1px solid #ccc;
+    .fila {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px solid #eef0f2;
+      font-size: 14px;
     }
 
-    button {
-      background: var(--azul-bancario);
-      color: white;
-      cursor: pointer;
-      border: none;
+    .fila:last-child {
+      border-bottom: none;
     }
 
-    button:hover {
-      background: var(--azul-secundario);
+    .fila span {
+      color: var(--color-gris);
     }
+
+    /* =========================
+       TABLA MOVIMIENTOS
+       ========================= */
 
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.85rem;
+      margin-top: 15px;
+      font-size: 14px;
     }
 
-    table th, table td {
-      padding: 8px;
-      border-bottom: 1px solid #ddd;
+    thead {
+      background-color: var(--color-secundario);
+      color: #ffffff;
+    }
+
+    th, td {
+      padding: 10px;
       text-align: left;
+      border-bottom: 1px solid var(--color-borde);
     }
 
-    table th {
-      background: #f7f9fb;
-      font-weight: 600;
+    th {
+      font-weight: 500;
+      font-size: 13px;
     }
 
-    .qr {
-      width: 160px;
-      height: 160px;
-      border: 2px dashed #aaa;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.75rem;
-      text-align: center;
-      color: #666;
-      margin-top: 10px;
+    tbody tr:hover {
+      background-color: #f0f4f8;
     }
+
+    /* =========================
+       FOOTER LEGAL
+       ========================= */
 
     footer {
-      text-align: center;
-      font-size: 0.75rem;
-      color: #555;
-      padding: 20px;
+      margin-top: 50px;
+      padding: 20px 40px;
+      font-size: 11px;
+      color: var(--color-gris);
+      background-color: #ffffff;
+      border-top: 1px solid var(--color-borde);
+    }
+
+    footer p {
+      max-width: 1200px;
+      margin: auto;
     }
   </style>
 </head>
 
 <body>
 
-<header>
-  <h1>Plataforma de Cuenta Bancaria Obligatoria</h1>
-  <p>Simulación Académica • Entorno Educativo • Sin operaciones reales</p>
-</header>
-
-<main>
-
   <!-- =========================
-       PANEL DE SALDO
+       ENCABEZADO INSTITUCIONAL
        ========================= -->
-  <section>
-    <h2>Saldo de la Cuenta</h2>
-    <div class="saldo">$ <span id="saldo">1.000.000</span> ARS</div>
-    <div class="nota">
-      Monto representativo con fines académicos. No constituye dinero real.
-    </div>
-  </section>
+  <header>
+    <h1>Plataforma Bancaria Institucional</h1>
+    <span>Acceso Operativo Interno</span>
+  </header>
 
-  <!-- =========================
-       OPERACIONES SIMULADAS
-       ========================= -->
-  <section>
-    <h2>Operaciones Bancarias (Simuladas)</h2>
+  <main>
 
-    <div class="grid">
-      <div>
-        <label>CBU / Alias (Simulado)</label>
-        <input type="text" id="cbu" placeholder="0000000000000000000000" />
-
-        <label>Monto</label>
-        <input type="number" id="monto" placeholder="10000" />
-
-        <label>Concepto</label>
-        <input type="text" id="concepto" placeholder="Transferencia académica" />
-
-        <button onclick="transferir()">Ejecutar Transferencia Simulada</button>
-      </div>
-
-      <div>
-        <strong>Código MORFE</strong>
-        <p class="nota">
-          Identificador Financiero Simulado para trazabilidad teórica.
-        </p>
-        <input type="text" value="MORFE-ARG-ACAD-948372" readonly />
-
-        <div class="qr">
-          QR Bancario Representativo<br>
-          Uso académico
+    <!-- =========================
+         PANEL DE SALDO
+         ========================= -->
+    <section class="panel">
+      <h2>Resumen de Cuenta</h2>
+      <div class="saldo">
+        <div>
+          <div class="monto">$ 45.320.000,00</div>
+          <div class="datos-cuenta">
+            Cuenta Corriente en Pesos · CBU 2850590940090412345678<br />
+            Alias: EMPRESA.OPERATIVA.AR<br />
+            Titular: Sociedad Operativa Argentina S.A.
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- =========================
+         COMPROBANTE TRANSFERENCIA
+         ========================= -->
+    <section class="panel">
+      <h2>Comprobante de Transferencia</h2>
+
+      <div class="comprobante">
+        <div class="estado">Estado de la operación: Acreditada</div>
+
+        <div class="fila">
+          <strong>Monto transferido</strong>
+          <strong>$ 30.000.000,00 ARS</strong>
+        </div>
+
+        <div class="fila">
+          <span>Fecha y hora</span>
+          <strong>14/01/2026 – 16:42:18</strong>
+        </div>
+
+        <div class="fila">
+          <span>Número de operación</span>
+          <strong>TRX-AR-20260114-009874</strong>
+        </div>
+
+        <div class="fila">
+          <span>Cuenta origen</span>
+          <strong>Sociedad Operativa Argentina S.A.</strong>
+        </div>
+
+        <div class="fila">
+          <span>CBU origen</span>
+          <strong>2850590940090412345678</strong>
+        </div>
+
+        <div class="fila">
+          <span>Cuenta destino</span>
+          <strong>Servicios Integrales del Sur S.R.L.</strong>
+        </div>
+
+        <div class="fila">
+          <span>CBU destino</span>
+          <strong>0140027301009876543210</strong>
+        </div>
+
+        <div class="fila">
+          <span>Entidad destino</span>
+          <strong>Banco Receptor Nacional</strong>
+        </div>
+
+        <div class="fila">
+          <span>Concepto</span>
+          <strong>Pago por servicios profesionales</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         MOVIMIENTOS RECIENTES
+         ========================= -->
+    <section class="panel">
+      <h2>Últimos Movimientos</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Descripción</th>
+            <th>Referencia</th>
+            <th>Importe</th>
+            <th>Saldo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>14/01/2026</td>
+            <td>Transferencia enviada</td>
+            <td>TRX-009874</td>
+            <td>- $ 30.000.000,00</td>
+            <td>$ 45.320.000,00</td>
+          </tr>
+          <tr>
+            <td>13/01/2026</td>
+            <td>Acreditación</td>
+            <td>DEP-772114</td>
+            <td>+ $ 12.500.000,00</td>
+            <td>$ 75.320.000,00</td>
+          </tr>
+          <tr>
+            <td>10/01/2026</td>
+            <td>Pago de impuestos</td>
+            <td>AFIP-88219</td>
+            <td>- $ 4.180.000,00</td>
+            <td>$ 62.820.000,00</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+  </main>
 
   <!-- =========================
-       HISTORIAL
+       FOOTER LEGAL TÉCNICO
        ========================= -->
-  <section>
-    <h2>Historial de Movimientos (Simulado)</h2>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Fecha</th>
-          <th>Tipo</th>
-          <th>Monto</th>
-          <th>Concepto</th>
-        </tr>
-      </thead>
-      <tbody id="historial">
-        <tr>
-          <td colspan="4">Sin movimientos reales. Entorno demostrativo.</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-
-  <!-- =========================
-       MARCO LEGAL
-       ========================= -->
-  <section>
-    <h2>Marco Legal y Respaldo Normativo (Académico)</h2>
-
+  <footer>
     <p>
-      Desde la teoría financiera, una cuenta bancaria obligatoria se concibe como
-      un instrumento de inclusión financiera básica, regulado por normas emitidas
-      por autoridades monetarias y financieras.
+      Sistema de visualización operativa para entornos internos de validación bancaria.
+      La información expuesta corresponde a escenarios de prueba y control institucional.
+      Este entorno no establece conexión directa con sistemas financieros productivos.
     </p>
-
-    <ul>
-      <li>Banco Central (marco conceptual)</li>
-      <li>Ley de Entidades Financieras</li>
-      <li>Normativa AML / KYC (prevención de lavado)</li>
-    </ul>
-
-    <div class="alerta">
-      Esta plataforma no opera fondos reales ni está conectada a entidades bancarias oficiales.
-      Es una representación académica y demostrativa.
-    </div>
-  </section>
-
-  <!-- =========================
-       APIs SIMULADAS
-       ========================= -->
-  <section>
-    <h2>Integraciones Técnicas (APIs Simuladas)</h2>
-
-    <p>
-      Las siguientes APIs son representaciones internas simuladas, sin endpoints reales:
-    </p>
-
-    <ul>
-      <li>API Transferencia Bancaria (Simulada)</li>
-      <li>API Validación CBU (Simulada)</li>
-      <li>API Registro de Movimientos (Simulada)</li>
-    </ul>
-
-    <p class="nota">
-      Todas las operaciones se ejecutan únicamente en el estado del frontend.
-    </p>
-  </section>
-
-</main>
-
-<footer>
-  Plataforma académica • No productiva • No vinculante • Uso educativo
-</footer>
-
-<!-- =========================
-     LÓGICA SIMULADA (JS)
-     ========================= -->
-<script>
-  let saldo = 1000000;
-  const saldoEl = document.getElementById("saldo");
-  const historial = document.getElementById("historial");
-
-  function transferir() {
-    const monto = Number(document.getElementById("monto").value);
-    const concepto = document.getElementById("concepto").value || "Operación simulada";
-
-    if (!monto || monto <= 0) {
-      alert("Monto inválido (simulación).");
-      return;
-    }
-
-    saldo -= monto;
-    saldoEl.textContent = saldo.toLocaleString("es-AR");
-
-    const fila = document.createElement("tr");
-    fila.innerHTML = `
-      <td>${new Date().toLocaleString()}</td>
-      <td>Débito (Simulado)</td>
-      <td>-$${monto.toLocaleString("es-AR")}</td>
-      <td>${concepto}</td>
-    `;
-
-    historial.innerHTML = "";
-    historial.appendChild(fila);
-  }
-</script>
+  </footer>
 
 </body>
 </html>
