@@ -2,194 +2,270 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Cuenta Bancaria Obligatoria – Respaldo Legal</title>
 
     <!--
-        ESTILOS GENERALES
-        Diseño sobrio, institucional, inspirado en home banking y portales estatales.
-        CSS embebido según requisito académico.
+        TÍTULO INSTITUCIONAL
+        Visible en pestaña del navegador y buscadores
+    -->
+    <title>Cuenta Bancaria Obligatoria – Interfaz Académica Institucional</title>
+
+    <!--
+        METAETIQUETAS
+        Responsividad y presentación profesional
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interfaz académica e institucional de una Cuenta Bancaria Obligatoria con respaldo legal. HTML y CSS sin JavaScript.">
+    <meta name="author" content="Proyecto Académico">
+
+    <!--
+        ESTILOS CSS EMBEBIDOS
+        Diseño sobrio, bancario, estatal e institucional
     -->
     <style>
+        /* ============================
+           VARIABLES DE DISEÑO
+           ============================ */
         :root {
-            --azul-institucional: #1f3a5f;
-            --gris-oscuro: #2e2e2e;
-            --gris-claro: #f2f4f6;
-            --blanco: #ffffff;
-            --borde: #d0d6dc;
+            --color-primario: #1f3a5f;
+            --color-secundario: #2f5d8a;
+            --color-fondo: #f3f5f7;
+            --color-blanco: #ffffff;
+            --color-gris: #6b6f75;
+            --color-borde: #d1d7dd;
+            --color-destacado: #0b5ed7;
         }
 
+        /* ============================
+           RESET Y BASE
+           ============================ */
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
             font-family: "Segoe UI", Roboto, Arial, sans-serif;
         }
 
         body {
-            margin: 0;
-            background-color: var(--gris-claro);
-            color: var(--gris-oscuro);
+            background-color: var(--color-fondo);
+            color: #222;
+            line-height: 1.6;
         }
 
+        /* ============================
+           ENCABEZADO INSTITUCIONAL
+           ============================ */
         header {
-            background-color: var(--azul-institucional);
-            color: var(--blanco);
-            padding: 24px;
+            background: linear-gradient(135deg, var(--color-primario), var(--color-secundario));
+            color: var(--color-blanco);
+            padding: 32px 16px;
             text-align: center;
+            border-bottom: 4px solid #0a2a45;
         }
 
         header h1 {
-            margin: 0;
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             font-weight: 600;
+            margin-bottom: 8px;
         }
 
         header p {
-            margin-top: 8px;
             font-size: 0.95rem;
             opacity: 0.9;
         }
 
+        /* ============================
+           CONTENEDOR PRINCIPAL
+           ============================ */
         main {
-            max-width: 1100px;
-            margin: 32px auto;
+            max-width: 1200px;
+            margin: 40px auto;
             padding: 0 16px;
         }
 
+        /* ============================
+           SECCIONES
+           ============================ */
         section {
-            background-color: var(--blanco);
-            border: 1px solid var(--borde);
+            background-color: var(--color-blanco);
+            border: 1px solid var(--color-borde);
             border-radius: 6px;
-            padding: 24px;
-            margin-bottom: 24px;
+            padding: 28px;
+            margin-bottom: 28px;
         }
 
         section h2 {
-            margin-top: 0;
-            font-size: 1.25rem;
-            color: var(--azul-institucional);
-            border-bottom: 1px solid var(--borde);
-            padding-bottom: 8px;
+            font-size: 1.3rem;
+            color: var(--color-primario);
+            border-bottom: 1px solid var(--color-borde);
+            padding-bottom: 10px;
+            margin-bottom: 16px;
         }
 
-        .destacado {
-            font-size: 1.2rem;
+        /* ============================
+           TEXTO DESTACADO
+           ============================ */
+        .monto {
+            font-size: 1.4rem;
             font-weight: 600;
-            margin: 12px 0;
+            color: var(--color-destacado);
+            margin-bottom: 10px;
         }
 
-        .aclaracion {
+        .nota {
             font-size: 0.9rem;
-            color: #555;
+            color: var(--color-gris);
         }
 
+        /* ============================
+           GRID DE DATOS BANCARIOS
+           ============================ */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 16px;
+            margin-top: 12px;
         }
 
         .dato {
-            border: 1px solid var(--borde);
-            border-radius: 4px;
-            padding: 12px;
             background-color: #fafbfc;
+            border: 1px solid var(--color-borde);
+            border-radius: 4px;
+            padding: 14px;
         }
 
         .dato span {
             display: block;
-            font-size: 0.8rem;
-            color: #666;
+            font-size: 0.75rem;
+            color: var(--color-gris);
+            margin-bottom: 4px;
+            text-transform: uppercase;
         }
 
         .dato strong {
             font-size: 0.95rem;
+            font-weight: 600;
         }
 
-        /* Transferencias (visual) */
+        /* ============================
+           TRANSFERENCIAS (VISUAL)
+           ============================ */
         .transferencias label {
             display: block;
             font-size: 0.85rem;
-            margin-top: 12px;
+            margin-top: 14px;
         }
 
         .transferencias input {
             width: 100%;
-            padding: 8px;
+            padding: 10px;
             margin-top: 4px;
-            border: 1px solid var(--borde);
+            border: 1px solid var(--color-borde);
             border-radius: 4px;
+            font-size: 0.9rem;
         }
 
         .btn {
-            margin-top: 16px;
-            padding: 10px;
+            margin-top: 20px;
+            padding: 12px;
             width: 100%;
-            background-color: var(--azul-institucional);
-            color: var(--blanco);
+            background-color: var(--color-primario);
+            color: var(--color-blanco);
             border: none;
             border-radius: 4px;
             font-size: 0.95rem;
-            cursor: default; /* visual, no funcional */
+            font-weight: 500;
+            cursor: default;
         }
 
-        /* QR simulado */
-        .qr-box {
-            width: 140px;
-            height: 140px;
+        /* ============================
+           QR SIMULADO
+           ============================ */
+        .qr-contenedor {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .qr {
+            width: 150px;
+            height: 150px;
             background:
                 linear-gradient(90deg, #000 25%, transparent 25%) 0 0 / 20px 20px,
                 linear-gradient(#000 25%, transparent 25%) 0 0 / 20px 20px;
             border: 6px solid #000;
-            margin: 16px auto;
         }
 
+        /* ============================
+           LISTAS
+           ============================ */
+        ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        ul li {
+            margin-bottom: 6px;
+        }
+
+        /* ============================
+           PIE DE PÁGINA
+           ============================ */
         footer {
             text-align: center;
             font-size: 0.8rem;
-            color: #666;
-            padding: 24px;
+            color: var(--color-gris);
+            padding: 28px 16px;
         }
     </style>
 </head>
 
 <body>
 
-    <!-- ENCABEZADO INSTITUCIONAL -->
+    <!-- ============================
+         HEADER
+         ============================ -->
     <header>
         <h1>Cuenta Bancaria Obligatoria – Respaldo Legal</h1>
-        <p>Interfaz académica de carácter institucional y regulado</p>
+        <p>Interfaz web académica • Diseño institucional • Sistema financiero regulado</p>
     </header>
 
     <main>
 
-        <!-- MONTO GARANTIZADO -->
+        <!-- ============================
+             MONTO GARANTIZADO
+             ============================ -->
         <section>
             <h2>Monto Garantizado</h2>
-            <p class="destacado">Monto garantizado: $1.000.000 (un millón de pesos)</p>
-            <p class="aclaracion">
-                Este monto se encuentra garantizado por normativa vigente aplicable al esquema de
-                cuentas bancarias obligatorias, conforme a marcos regulatorios financieros.
+            <p class="monto">$1.000.000 (un millón de pesos)</p>
+            <p class="nota">
+                El monto indicado se encuentra garantizado conforme a normativa vigente aplicable
+                a esquemas de cuentas bancarias obligatorias, bajo supervisión regulatoria.
             </p>
         </section>
 
-        <!-- MARCO LEGAL -->
+        <!-- ============================
+             MARCO LEGAL
+             ============================ -->
         <section>
             <h2>Marco Legal y Respaldo Normativo</h2>
             <p>
-                La Cuenta Bancaria Obligatoria es un instrumento financiero de carácter regulado,
-                establecido dentro de un marco normativo que define su obligatoriedad, trazabilidad
-                y alcance institucional.
+                La presente Cuenta Bancaria Obligatoria constituye un instrumento financiero
+                regulado, establecido dentro de un marco legal que define su carácter obligatorio,
+                su trazabilidad operativa y su supervisión institucional.
             </p>
             <p>
-                El esquema legal vigente establece la garantía del monto informado, así como los
-                mecanismos de validación, supervisión y control por parte de las entidades
-                reguladoras correspondientes.
+                La normativa correspondiente garantiza la existencia de mecanismos de control,
+                validación y registro, asegurando la integridad de los fondos y la transparencia
+                de las operaciones.
             </p>
-            <p class="aclaracion">
-                Texto redactado con fines académicos y demostrativos, no constitutivo de asesoramiento legal.
+            <p class="nota">
+                Documento de carácter académico y demostrativo. No constituye asesoramiento legal.
             </p>
         </section>
 
-        <!-- DATOS BANCARIOS SIMULADOS -->
+        <!-- ============================
+             DATOS BANCARIOS
+             ============================ -->
         <section>
             <h2>Datos Bancarios de la Cuenta</h2>
             <div class="grid">
@@ -210,79 +286,86 @@
                     <strong>Autoridad Financiera Nacional</strong>
                 </div>
                 <div class="dato">
-                    <span>Estado de la Cuenta</span>
-                    <strong>Activa y validada</strong>
+                    <span>Estado</span>
+                    <strong>Activa • Validada • Regulada</strong>
                 </div>
             </div>
         </section>
 
-        <!-- TRANSFERENCIAS (VISUAL) -->
+        <!-- ============================
+             TRANSFERENCIAS
+             ============================ -->
         <section class="transferencias">
             <h2>Transferencias Bancarias</h2>
 
-            <!-- Campos únicamente visuales -->
             <label>Monto</label>
             <input type="text" placeholder="$">
 
             <label>CBU / CVU destino</label>
-            <input type="text" placeholder="Ingrese CBU o CVU">
+            <input type="text" placeholder="Ingrese identificador bancario">
 
             <label>Concepto</label>
-            <input type="text" placeholder="Concepto de la transferencia">
+            <input type="text" placeholder="Detalle de la operación">
 
             <button class="btn">Iniciar transferencia</button>
-        </section>
 
-        <!-- QR -->
-        <section>
-            <h2>Validación y Transferencias mediante QR</h2>
-            <div class="qr-box" aria-label="Código QR simulado"></div>
-            <p class="aclaracion" style="text-align:center;">
-                QR interoperable con plataformas bancarias y billeteras virtuales.
+            <p class="nota">
+                Funcionalidad visual con fines académicos. No ejecuta operaciones reales.
             </p>
         </section>
 
-        <!-- CÓDIGO MORFE -->
+        <!-- ============================
+             QR
+             ============================ -->
+        <section>
+            <h2>Validación y Operación mediante Código QR</h2>
+            <div class="qr-contenedor">
+                <div class="qr" aria-label="Código QR simulado"></div>
+            </div>
+            <p class="nota" style="text-align:center;">
+                QR interoperable con bancos, billeteras virtuales y plataformas financieras reguladas.
+            </p>
+        </section>
+
+        <!-- ============================
+             CÓDIGO MORFE
+             ============================ -->
         <section>
             <h2>Código MORFE</h2>
             <p>
                 El Código MORFE (Módulo de Operación y Registro Financiero Estandarizado)
-                es un identificador institucional utilizado para reforzar los procesos de
-                validación, trazabilidad y control de operaciones asociadas a esta cuenta.
-            </p>
-            <p>
-                Su función principal es asegurar la coherencia entre la identidad de la cuenta,
-                las operaciones registradas y los sistemas de supervisión regulatoria.
+                es un identificador institucional orientado a reforzar la validación,
+                trazabilidad y auditoría de las operaciones financieras.
             </p>
 
-            <div class="dato">
-                <span>Ejemplo de Código MORFE</span>
+            <div class="dato" style="margin-top:12px;">
+                <span>Código MORFE asignado</span>
                 <strong>MORFE-AR-2026-0001-LEG</strong>
             </div>
         </section>
 
-        <!-- COMPATIBILIDAD -->
+        <!-- ============================
+             COMPATIBILIDAD
+             ============================ -->
         <section>
             <h2>Compatibilidad con Plataformas</h2>
-            <p>
-                Esta cuenta se encuentra diseñada para operar dentro de esquemas de interoperabilidad
-                financiera, permitiendo su integración con:
-            </p>
             <ul>
-                <li>Bancos tradicionales</li>
-                <li>Billeteras virtuales</li>
-                <li>Plataformas de pago interoperables</li>
+                <li>Bancos tradicionales regulados</li>
+                <li>Billeteras virtuales interoperables</li>
+                <li>Sistemas de pago y compensación financiera</li>
             </ul>
-            <p class="aclaracion">
-                Información presentada con fines descriptivos y académicos.
+            <p class="nota">
+                Información descriptiva con fines educativos.
             </p>
         </section>
 
     </main>
 
-    <!-- PIE INSTITUCIONAL -->
+    <!-- ============================
+         FOOTER
+         ============================ -->
     <footer>
-        Interfaz académica • Diseño institucional • HTML + CSS sin JavaScript
+        Proyecto académico • HTML + CSS • Interfaz institucional demostrativa
     </footer>
 
 </body>
