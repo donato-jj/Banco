@@ -1,372 +1,326 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <title>Cuenta Bancaria Obligatoria — Simulación Académica</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!--
-        TÍTULO INSTITUCIONAL
-        Visible en pestaña del navegador y buscadores
-    -->
-    <title>Cuenta Bancaria Obligatoria – Interfaz Académica Institucional</title>
+  <!-- =========================
+       ESTILOS INSTITUCIONALES
+       ========================= -->
+  <style>
+    :root {
+      --azul-bancario: #0b3c5d;
+      --azul-secundario: #1d6fa5;
+      --gris-institucional: #f2f4f6;
+      --texto-principal: #1e1e1e;
+      --alerta: #8a1f1f;
+    }
 
-    <!--
-        METAETIQUETAS
-        Responsividad y presentación profesional
-    -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Interfaz académica e institucional de una Cuenta Bancaria Obligatoria con respaldo legal. HTML y CSS sin JavaScript.">
-    <meta name="author" content="Proyecto Académico">
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
 
-    <!--
-        ESTILOS CSS EMBEBIDOS
-        Diseño sobrio, bancario, estatal e institucional
-    -->
-    <style>
-        /* ============================
-           VARIABLES DE DISEÑO
-           ============================ */
-        :root {
-            --color-primario: #1f3a5f;
-            --color-secundario: #2f5d8a;
-            --color-fondo: #f3f5f7;
-            --color-blanco: #ffffff;
-            --color-gris: #6b6f75;
-            --color-borde: #d1d7dd;
-            --color-destacado: #0b5ed7;
-        }
+    body {
+      margin: 0;
+      background: var(--gris-institucional);
+      color: var(--texto-principal);
+    }
 
-        /* ============================
-           RESET Y BASE
-           ============================ */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: "Segoe UI", Roboto, Arial, sans-serif;
-        }
+    header {
+      background: var(--azul-bancario);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
 
-        body {
-            background-color: var(--color-fondo);
-            color: #222;
-            line-height: 1.6;
-        }
+    header h1 {
+      margin: 0;
+      font-size: 1.6rem;
+      font-weight: 600;
+    }
 
-        /* ============================
-           ENCABEZADO INSTITUCIONAL
-           ============================ */
-        header {
-            background: linear-gradient(135deg, var(--color-primario), var(--color-secundario));
-            color: var(--color-blanco);
-            padding: 32px 16px;
-            text-align: center;
-            border-bottom: 4px solid #0a2a45;
-        }
+    header p {
+      margin: 5px 0 0;
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
 
-        header h1 {
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
+    main {
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 0 20px 40px;
+    }
 
-        header p {
-            font-size: 0.95rem;
-            opacity: 0.9;
-        }
+    section {
+      background: white;
+      border-radius: 6px;
+      padding: 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
 
-        /* ============================
-           CONTENEDOR PRINCIPAL
-           ============================ */
-        main {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 16px;
-        }
+    section h2 {
+      margin-top: 0;
+      color: var(--azul-bancario);
+      font-size: 1.2rem;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 8px;
+    }
 
-        /* ============================
-           SECCIONES
-           ============================ */
-        section {
-            background-color: var(--color-blanco);
-            border: 1px solid var(--color-borde);
-            border-radius: 6px;
-            padding: 28px;
-            margin-bottom: 28px;
-        }
+    .saldo {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--azul-secundario);
+    }
 
-        section h2 {
-            font-size: 1.3rem;
-            color: var(--color-primario);
-            border-bottom: 1px solid var(--color-borde);
-            padding-bottom: 10px;
-            margin-bottom: 16px;
-        }
+    .nota {
+      font-size: 0.85rem;
+      color: #555;
+      margin-top: 5px;
+    }
 
-        /* ============================
-           TEXTO DESTACADO
-           ============================ */
-        .monto {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: var(--color-destacado);
-            margin-bottom: 10px;
-        }
+    .alerta {
+      background: #fff1f1;
+      border-left: 4px solid var(--alerta);
+      padding: 12px;
+      font-size: 0.85rem;
+      margin-top: 15px;
+    }
 
-        .nota {
-            font-size: 0.9rem;
-            color: var(--color-gris);
-        }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
 
-        /* ============================
-           GRID DE DATOS BANCARIOS
-           ============================ */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 16px;
-            margin-top: 12px;
-        }
+    label {
+      display: block;
+      font-size: 0.85rem;
+      margin-bottom: 4px;
+    }
 
-        .dato {
-            background-color: #fafbfc;
-            border: 1px solid var(--color-borde);
-            border-radius: 4px;
-            padding: 14px;
-        }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      font-size: 0.9rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
 
-        .dato span {
-            display: block;
-            font-size: 0.75rem;
-            color: var(--color-gris);
-            margin-bottom: 4px;
-            text-transform: uppercase;
-        }
+    button {
+      background: var(--azul-bancario);
+      color: white;
+      cursor: pointer;
+      border: none;
+    }
 
-        .dato strong {
-            font-size: 0.95rem;
-            font-weight: 600;
-        }
+    button:hover {
+      background: var(--azul-secundario);
+    }
 
-        /* ============================
-           TRANSFERENCIAS (VISUAL)
-           ============================ */
-        .transferencias label {
-            display: block;
-            font-size: 0.85rem;
-            margin-top: 14px;
-        }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
 
-        .transferencias input {
-            width: 100%;
-            padding: 10px;
-            margin-top: 4px;
-            border: 1px solid var(--color-borde);
-            border-radius: 4px;
-            font-size: 0.9rem;
-        }
+    table th, table td {
+      padding: 8px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
 
-        .btn {
-            margin-top: 20px;
-            padding: 12px;
-            width: 100%;
-            background-color: var(--color-primario);
-            color: var(--color-blanco);
-            border: none;
-            border-radius: 4px;
-            font-size: 0.95rem;
-            font-weight: 500;
-            cursor: default;
-        }
+    table th {
+      background: #f7f9fb;
+      font-weight: 600;
+    }
 
-        /* ============================
-           QR SIMULADO
-           ============================ */
-        .qr-contenedor {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0;
-        }
+    .qr {
+      width: 160px;
+      height: 160px;
+      border: 2px dashed #aaa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      text-align: center;
+      color: #666;
+      margin-top: 10px;
+    }
 
-        .qr {
-            width: 150px;
-            height: 150px;
-            background:
-                linear-gradient(90deg, #000 25%, transparent 25%) 0 0 / 20px 20px,
-                linear-gradient(#000 25%, transparent 25%) 0 0 / 20px 20px;
-            border: 6px solid #000;
-        }
-
-        /* ============================
-           LISTAS
-           ============================ */
-        ul {
-            margin-left: 20px;
-            margin-top: 10px;
-        }
-
-        ul li {
-            margin-bottom: 6px;
-        }
-
-        /* ============================
-           PIE DE PÁGINA
-           ============================ */
-        footer {
-            text-align: center;
-            font-size: 0.8rem;
-            color: var(--color-gris);
-            padding: 28px 16px;
-        }
-    </style>
+    footer {
+      text-align: center;
+      font-size: 0.75rem;
+      color: #555;
+      padding: 20px;
+    }
+  </style>
 </head>
 
 <body>
 
-    <!-- ============================
-         HEADER
-         ============================ -->
-    <header>
-        <h1>Cuenta Bancaria Obligatoria – Respaldo Legal</h1>
-        <p>Interfaz web académica • Diseño institucional • Sistema financiero regulado</p>
-    </header>
+<header>
+  <h1>Plataforma de Cuenta Bancaria Obligatoria</h1>
+  <p>Simulación Académica • Entorno Educativo • Sin operaciones reales</p>
+</header>
 
-    <main>
+<main>
 
-        <!-- ============================
-             MONTO GARANTIZADO
-             ============================ -->
-        <section>
-            <h2>Monto Garantizado</h2>
-            <p class="monto">$1.000.000 (un millón de pesos)</p>
-            <p class="nota">
-                El monto indicado se encuentra garantizado conforme a normativa vigente aplicable
-                a esquemas de cuentas bancarias obligatorias, bajo supervisión regulatoria.
-            </p>
-        </section>
+  <!-- =========================
+       PANEL DE SALDO
+       ========================= -->
+  <section>
+    <h2>Saldo de la Cuenta</h2>
+    <div class="saldo">$ <span id="saldo">1.000.000</span> ARS</div>
+    <div class="nota">
+      Monto representativo con fines académicos. No constituye dinero real.
+    </div>
+  </section>
 
-        <!-- ============================
-             MARCO LEGAL
-             ============================ -->
-        <section>
-            <h2>Marco Legal y Respaldo Normativo</h2>
-            <p>
-                La presente Cuenta Bancaria Obligatoria constituye un instrumento financiero
-                regulado, establecido dentro de un marco legal que define su carácter obligatorio,
-                su trazabilidad operativa y su supervisión institucional.
-            </p>
-            <p>
-                La normativa correspondiente garantiza la existencia de mecanismos de control,
-                validación y registro, asegurando la integridad de los fondos y la transparencia
-                de las operaciones.
-            </p>
-            <p class="nota">
-                Documento de carácter académico y demostrativo. No constituye asesoramiento legal.
-            </p>
-        </section>
+  <!-- =========================
+       OPERACIONES SIMULADAS
+       ========================= -->
+  <section>
+    <h2>Operaciones Bancarias (Simuladas)</h2>
 
-        <!-- ============================
-             DATOS BANCARIOS
-             ============================ -->
-        <section>
-            <h2>Datos Bancarios de la Cuenta</h2>
-            <div class="grid">
-                <div class="dato">
-                    <span>CBU / CVU</span>
-                    <strong>2850590940090418135201</strong>
-                </div>
-                <div class="dato">
-                    <span>Alias Bancario</span>
-                    <strong>CUENTA.OBLIGATORIA.LEGAL</strong>
-                </div>
-                <div class="dato">
-                    <span>Tipo de Cuenta</span>
-                    <strong>Cuenta Bancaria Obligatoria</strong>
-                </div>
-                <div class="dato">
-                    <span>Entidad Reguladora</span>
-                    <strong>Autoridad Financiera Nacional</strong>
-                </div>
-                <div class="dato">
-                    <span>Estado</span>
-                    <strong>Activa • Validada • Regulada</strong>
-                </div>
-            </div>
-        </section>
+    <div class="grid">
+      <div>
+        <label>CBU / Alias (Simulado)</label>
+        <input type="text" id="cbu" placeholder="0000000000000000000000" />
 
-        <!-- ============================
-             TRANSFERENCIAS
-             ============================ -->
-        <section class="transferencias">
-            <h2>Transferencias Bancarias</h2>
+        <label>Monto</label>
+        <input type="number" id="monto" placeholder="10000" />
 
-            <label>Monto</label>
-            <input type="text" placeholder="$">
+        <label>Concepto</label>
+        <input type="text" id="concepto" placeholder="Transferencia académica" />
 
-            <label>CBU / CVU destino</label>
-            <input type="text" placeholder="Ingrese identificador bancario">
+        <button onclick="transferir()">Ejecutar Transferencia Simulada</button>
+      </div>
 
-            <label>Concepto</label>
-            <input type="text" placeholder="Detalle de la operación">
+      <div>
+        <strong>Código MORFE</strong>
+        <p class="nota">
+          Identificador Financiero Simulado para trazabilidad teórica.
+        </p>
+        <input type="text" value="MORFE-ARG-ACAD-948372" readonly />
 
-            <button class="btn">Iniciar transferencia</button>
+        <div class="qr">
+          QR Bancario Representativo<br>
+          Uso académico
+        </div>
+      </div>
+    </div>
+  </section>
 
-            <p class="nota">
-                Funcionalidad visual con fines académicos. No ejecuta operaciones reales.
-            </p>
-        </section>
+  <!-- =========================
+       HISTORIAL
+       ========================= -->
+  <section>
+    <h2>Historial de Movimientos (Simulado)</h2>
 
-        <!-- ============================
-             QR
-             ============================ -->
-        <section>
-            <h2>Validación y Operación mediante Código QR</h2>
-            <div class="qr-contenedor">
-                <div class="qr" aria-label="Código QR simulado"></div>
-            </div>
-            <p class="nota" style="text-align:center;">
-                QR interoperable con bancos, billeteras virtuales y plataformas financieras reguladas.
-            </p>
-        </section>
+    <table>
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Tipo</th>
+          <th>Monto</th>
+          <th>Concepto</th>
+        </tr>
+      </thead>
+      <tbody id="historial">
+        <tr>
+          <td colspan="4">Sin movimientos reales. Entorno demostrativo.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
 
-        <!-- ============================
-             CÓDIGO MORFE
-             ============================ -->
-        <section>
-            <h2>Código MORFE</h2>
-            <p>
-                El Código MORFE (Módulo de Operación y Registro Financiero Estandarizado)
-                es un identificador institucional orientado a reforzar la validación,
-                trazabilidad y auditoría de las operaciones financieras.
-            </p>
+  <!-- =========================
+       MARCO LEGAL
+       ========================= -->
+  <section>
+    <h2>Marco Legal y Respaldo Normativo (Académico)</h2>
 
-            <div class="dato" style="margin-top:12px;">
-                <span>Código MORFE asignado</span>
-                <strong>MORFE-AR-2026-0001-LEG</strong>
-            </div>
-        </section>
+    <p>
+      Desde la teoría financiera, una cuenta bancaria obligatoria se concibe como
+      un instrumento de inclusión financiera básica, regulado por normas emitidas
+      por autoridades monetarias y financieras.
+    </p>
 
-        <!-- ============================
-             COMPATIBILIDAD
-             ============================ -->
-        <section>
-            <h2>Compatibilidad con Plataformas</h2>
-            <ul>
-                <li>Bancos tradicionales regulados</li>
-                <li>Billeteras virtuales interoperables</li>
-                <li>Sistemas de pago y compensación financiera</li>
-            </ul>
-            <p class="nota">
-                Información descriptiva con fines educativos.
-            </p>
-        </section>
+    <ul>
+      <li>Banco Central (marco conceptual)</li>
+      <li>Ley de Entidades Financieras</li>
+      <li>Normativa AML / KYC (prevención de lavado)</li>
+    </ul>
 
-    </main>
+    <div class="alerta">
+      Esta plataforma no opera fondos reales ni está conectada a entidades bancarias oficiales.
+      Es una representación académica y demostrativa.
+    </div>
+  </section>
 
-    <!-- ============================
-         FOOTER
-         ============================ -->
-    <footer>
-        Proyecto académico • HTML + CSS • Interfaz institucional demostrativa
-    </footer>
+  <!-- =========================
+       APIs SIMULADAS
+       ========================= -->
+  <section>
+    <h2>Integraciones Técnicas (APIs Simuladas)</h2>
+
+    <p>
+      Las siguientes APIs son representaciones internas simuladas, sin endpoints reales:
+    </p>
+
+    <ul>
+      <li>API Transferencia Bancaria (Simulada)</li>
+      <li>API Validación CBU (Simulada)</li>
+      <li>API Registro de Movimientos (Simulada)</li>
+    </ul>
+
+    <p class="nota">
+      Todas las operaciones se ejecutan únicamente en el estado del frontend.
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  Plataforma académica • No productiva • No vinculante • Uso educativo
+</footer>
+
+<!-- =========================
+     LÓGICA SIMULADA (JS)
+     ========================= -->
+<script>
+  let saldo = 1000000;
+  const saldoEl = document.getElementById("saldo");
+  const historial = document.getElementById("historial");
+
+  function transferir() {
+    const monto = Number(document.getElementById("monto").value);
+    const concepto = document.getElementById("concepto").value || "Operación simulada";
+
+    if (!monto || monto <= 0) {
+      alert("Monto inválido (simulación).");
+      return;
+    }
+
+    saldo -= monto;
+    saldoEl.textContent = saldo.toLocaleString("es-AR");
+
+    const fila = document.createElement("tr");
+    fila.innerHTML = `
+      <td>${new Date().toLocaleString()}</td>
+      <td>Débito (Simulado)</td>
+      <td>-$${monto.toLocaleString("es-AR")}</td>
+      <td>${concepto}</td>
+    `;
+
+    historial.innerHTML = "";
+    historial.appendChild(fila);
+  }
+</script>
 
 </body>
 </html>
