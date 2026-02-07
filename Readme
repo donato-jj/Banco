@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <title>2064 · Evolución del Conocimiento</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proyecto 2064 · Tecnología & Futuro</title>
 
+  <!-- ================== CSS ================== -->
   <style>
-    /* ==============================
-       RESET Y BASE
-    ============================== */
+    :root {
+      --bg: #0b0e14;
+      --bg-dark: #06080d;
+      --primary: #00bcd4;
+      --text: #eaeaea;
+      --muted: #9aa0a6;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -15,180 +22,251 @@
     }
 
     body {
-      min-height: 100vh;
-      background: radial-gradient(circle at top, #0b1020, #000);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: Arial, sans-serif;
-      overflow: hidden;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    /* ==============================
-       CONTENEDOR ESCALABLE
-    ============================== */
-    #stage {
-      width: min(100vw, 100vh);
-      height: min(100vw, 100vh);
+    /* ===== HEADER ===== */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(11,14,20,0.9);
+      backdrop-filter: blur(6px);
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
+      padding: 1rem 2rem;
     }
 
-    /* ==============================
-       CANVAS BASE 1080x1080
-    ============================== */
-    #canvas {
+    .logo {
+      font-size: 1.2rem;
+      font-weight: bold;
+      letter-spacing: 3px;
+    }
+
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      height: 100vh;
       position: relative;
-      width: 1080px;
-      height: 1080px;
-      background: linear-gradient(145deg, #050b1e, #02040a);
-      overflow: hidden;
-      transform: scale(var(--scale, 1));
-      transform-origin: center;
-    }
-
-    /* ==============================
-       TEXTO PRINCIPAL
-    ============================== */
-    #title {
-      position: absolute;
-      top: 60px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 120px;
-      font-weight: 900;
-      letter-spacing: 6px;
-      color: #e6f1ff;
-      z-index: 10;
-      text-shadow: 0 0 30px rgba(0, 180, 255, 0.6);
-    }
-
-    /* ==============================
-       IMÁGENES
-    ============================== */
-    img {
-      position: absolute;
-      max-width: 100%;
-      height: auto;
-      user-select: none;
-      pointer-events: none;
-    }
-
-    #ancient {
-      width: 300px;
-      z-index: 2;
-      filter: drop-shadow(0 0 20px rgba(255, 200, 100, 0.35));
-    }
-
-    #space {
-      width: 340px;
-      z-index: 3;
-      filter: drop-shadow(0 0 25px rgba(120, 180, 255, 0.45));
-    }
-
-    /* ==============================
-       NÚCLEO CENTRAL
-    ============================== */
-    #arduino {
-      position: absolute;
-      width: 480px;
-      height: 280px;
-      border-radius: 20px;
-      background: linear-gradient(135deg, #1e90ff, #00ffd5);
-      box-shadow:
-        0 0 30px rgba(0, 255, 220, 0.6),
-        inset 0 0 20px rgba(255,255,255,0.25);
-      z-index: 5;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      animation: float 6s ease-in-out infinite;
-    }
-
-    #arduino span {
+      display: grid;
+      place-items: center;
       text-align: center;
-      font-size: 36px;
-      font-weight: 900;
-      letter-spacing: 2px;
-      color: #001018;
     }
 
-    /* ==============================
-       ANIMACIONES
-    ============================== */
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-12px); }
+    .hero img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.35;
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 680px;
+      padding: 2rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    .hero button {
+      margin-top: 2rem;
+      padding: 0.9rem 2.5rem;
+      background: var(--primary);
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    /* ===== SECTIONS ===== */
+    section {
+      padding: 7rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .grid img {
+      width: 100%;
+      border-radius: 14px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+
+    section.dark {
+      background: var(--bg-dark);
+      max-width: 100%;
+    }
+
+    section.dark > * {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    /* ===== CARDS ===== */
+    .cards {
+      margin-top: 3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: #111622;
+      padding: 2.5rem 2rem;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+    }
+
+    .card h3 {
+      margin-bottom: 0.8rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      padding: 3rem 2rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      background: #05070c;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      nav a {
+        margin-left: 1rem;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <div id="stage">
-    <div id="canvas">
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="logo">2064</div>
+    <nav>
+      <a href="#concepto">Concepto</a>
+      <a href="#tecnologia">Tecnología</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
 
-      <div id="title">2064</div>
-
-      <img
-        id="ancient"
-        src="IMG_20260207_180810_846.jpg"
-        alt="Instrumento astronómico antiguo"
-      />
-
-      <img
-        id="space"
-        src="IMG_20260207_180408_501.jpg"
-        alt="Satélites en el espacio"
-      />
-
-      <div id="arduino">
-        <span>ARDUINO<br>+<br>COSMOS</span>
-      </div>
-
+  <!-- ===== HERO ===== -->
+  <section class="hero visible">
+    <img src="assets/img/IMG_20260207_180810_846.jpg" alt="Tecnología futura">
+    <div class="hero-content">
+      <h1>Ingeniería del Futuro</h1>
+      <p>Tiempo, espacio y electrónica convergen en el año 2064.</p>
+      <button onclick="document.getElementById('concepto').scrollIntoView({behavior:'smooth'})">
+        Explorar
+      </button>
     </div>
-  </div>
+  </section>
 
+  <!-- ===== CONCEPTO ===== -->
+  <section id="concepto">
+    <div class="grid">
+      <img src="assets/img/IMG_20260207_180408_501.jpg" alt="Concepto espacial">
+      <div>
+        <h2>Concepto</h2>
+        <p>
+          Este proyecto representa una visión realista del futuro donde la
+          ingeniería, la ciencia y la exploración espacial se integran en un
+          mismo sistema narrativo, tecnológico y visual.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TECNOLOGIA ===== -->
+  <section id="tecnologia" class="dark">
+    <h2>Tecnología Aplicada</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Arduino & Electrónica</h3>
+        <p>Procesamiento físico, control y sistemas embebidos.</p>
+      </div>
+      <div class="card">
+        <h3>Satélites & Espacio</h3>
+        <p>Comunicación orbital, exploración y datos en tiempo real.</p>
+      </div>
+      <div class="card">
+        <h3>Tiempo & Futuro</h3>
+        <p>Diseño especulativo basado en tecnología real.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer id="contacto">
+    <p>Proyecto 2064 © <span id="year"></span></p>
+    <p>Contacto · Redes · Información</p>
+  </footer>
+
+  <!-- ================== JS ================== -->
   <script>
-    /* ==============================
-       POSICIONES
-    ============================== */
-    const ancientPos = { x: 80,  y: 150 };
-    const spacePos   = { x: 650, y: 170 };
-    const arduinoPos = { x: 300, y: 430 };
+    // Año automático
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-    const ancient = document.getElementById("ancient");
-    const space = document.getElementById("space");
-    const arduino = document.getElementById("arduino");
-    const canvas = document.getElementById("canvas");
+    // Animaciones al hacer scroll
+    const sections = document.querySelectorAll("section");
 
-    ancient.style.left = ancientPos.x + "px";
-    ancient.style.top  = ancientPos.y + "px";
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.2 });
 
-    space.style.left = spacePos.x + "px";
-    space.style.top  = spacePos.y + "px";
-
-    arduino.style.left = arduinoPos.x + "px";
-    arduino.style.top  = arduinoPos.y + "px";
-
-    /* ==============================
-       ESCALADO RESPONSIVO
-    ============================== */
-    function scaleCanvas() {
-      const scale = Math.min(
-        window.innerWidth / 1080,
-        window.innerHeight / 1080
-      );
-      canvas.style.setProperty("--scale", scale);
-    }
-
-    window.addEventListener("resize", scaleCanvas);
-    scaleCanvas();
+    sections.forEach(sec => {
+      if (!sec.classList.contains("hero")) {
+        observer.observe(sec);
+      }
+    });
   </script>
 
 </body>
 </html>
-
