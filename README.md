@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -51,11 +52,11 @@
       font-size: 0.9rem;
     }
 
-    /* HERO FULL IMAGE SIN FRAME */
+    /* HERO */
     .hero {
       height: 100vh;
       width: 100%;
-      background: url("assets/images/hero.jpg") center / cover no-repeat;
+      background: url("IMG_20260207_180408_501.jpg") center / cover no-repeat;
       position: relative;
       display: flex;
       align-items: center;
@@ -129,8 +130,6 @@
 
     .tech img {
       width: 100%;
-      border-radius: 0; /* SIN FRAME */
-      box-shadow: none;
     }
 
     /* SHOWCASE */
@@ -204,14 +203,14 @@
   <section id="vision">
     <h2>Visión</h2>
     <p>
-      La tecnología no es una herramienta externa.  
+      La tecnología no es una herramienta externa.<br>
       Es una extensión directa de la conciencia humana.
     </p>
   </section>
 
   <!-- TECNOLOGÍA -->
   <section id="tech" class="tech">
-    <img src="assets/images/tech.jpg" alt="Tecnología avanzada">
+    <img src="IMG_20260207_180810_846.jpg" alt="Tecnología avanzada">
     <div>
       <h2>Tecnología</h2>
       <p>
@@ -236,7 +235,6 @@
   </footer>
 
   <script>
-    // Scroll reveal
     const sections = document.querySelectorAll("section");
 
     const reveal = () => {
@@ -250,7 +248,6 @@
     window.addEventListener("scroll", reveal);
     reveal();
 
-    // CTA
     document.getElementById("cta").onclick = () => {
       document.getElementById("vision")
         .scrollIntoView({ behavior: "smooth" });
