@@ -2,8 +2,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CVΛL · Humanidad & Tecnología</title>
 
   <style>
@@ -26,7 +26,6 @@
       overflow-x: hidden;
     }
 
-    /* HEADER */
     header {
       position: fixed;
       top: 0;
@@ -35,9 +34,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 10;
       background: rgba(0,0,0,0.45);
       backdrop-filter: blur(10px);
+      z-index: 10;
     }
 
     .logo {
@@ -55,30 +54,23 @@
     /* HERO */
     .hero {
       height: 100vh;
-      width: 100%;
-      background: url("IMG_20260207_180408_501.jpg") center / cover no-repeat;
-      position: relative;
+      background: url("assets/images/hero.jpg") center / cover no-repeat;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
+      position: relative;
     }
 
     .hero::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(0,0,0,0.55),
-        #000
-      );
+      background: linear-gradient(to bottom, rgba(0,0,0,0.6), #000);
     }
 
     .hero-content {
       position: relative;
       text-align: center;
-      max-width: 800px;
-      padding: 20px;
       z-index: 1;
     }
 
@@ -101,12 +93,11 @@
       cursor: pointer;
     }
 
-    /* SECCIONES */
     section {
       padding: 120px 10%;
       opacity: 0;
       transform: translateY(40px);
-      transition: all 0.8s ease;
+      transition: 0.8s ease;
     }
 
     section.visible {
@@ -115,12 +106,10 @@
     }
 
     h2 {
-      margin-bottom: 20px;
       color: var(--accent);
-      letter-spacing: 1px;
+      margin-bottom: 20px;
     }
 
-    /* TECNOLOGÍA */
     .tech {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -132,7 +121,6 @@
       width: 100%;
     }
 
-    /* SHOWCASE */
     .showcase {
       display: flex;
       gap: 30px;
@@ -143,36 +131,26 @@
     .card {
       padding: 60px;
       border: 1px solid rgba(255,255,255,0.1);
-      transition: transform 0.3s ease;
       min-width: 220px;
       text-align: center;
+      transition: transform 0.3s;
     }
 
     .card:hover {
       transform: translateY(-12px);
     }
 
-    /* FOOTER */
     footer {
-      text-align: center;
       padding: 40px;
+      text-align: center;
       background: #000;
       font-size: 0.8rem;
       opacity: 0.7;
     }
 
-    /* RESPONSIVE */
     @media (max-width: 900px) {
       .tech {
         grid-template-columns: 1fr;
-      }
-
-      header {
-        padding: 20px 30px;
-      }
-
-      .hero h1 {
-        font-size: 2.2rem;
       }
     }
   </style>
@@ -180,79 +158,69 @@
 
 <body>
 
-  <header>
-    <div class="logo">CVΛL</div>
-    <nav>
-      <a href="#vision">Visión</a>
-      <a href="#tech">Tecnología</a>
-      <a href="#proyecto">Proyecto</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
-  </header>
+<header>
+  <div class="logo">CVΛL</div>
+  <nav>
+    <a href="#vision">Visión</a>
+    <a href="#tech">Tecnología</a>
+    <a href="#proyecto">Proyecto</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+</header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>HUMANIDAD & TECNOLOGÍA</h1>
-      <p>El futuro no se predice. Se diseña.</p>
-      <button id="cta">Explorar</button>
-    </div>
-  </section>
+<section class="hero">
+  <div class="hero-content">
+    <h1>HUMANIDAD & TECNOLOGÍA</h1>
+    <p>El futuro no se predice. Se diseña.</p>
+    <button id="cta">Explorar</button>
+  </div>
+</section>
 
-  <!-- VISIÓN -->
-  <section id="vision">
-    <h2>Visión</h2>
-    <p>
-      La tecnología no es una herramienta externa.<br>
-      Es una extensión directa de la conciencia humana.
-    </p>
-  </section>
+<section id="vision">
+  <h2>Visión</h2>
+  <p>La tecnología es una extensión directa de la conciencia humana.</p>
+</section>
 
-  <!-- TECNOLOGÍA -->
-  <section id="tech" class="tech">
-    <img src="IMG_20260207_180810_846.jpg" alt="Tecnología avanzada">
-    <div>
-      <h2>Tecnología</h2>
-      <p>
-        Electrónica, sistemas híbridos, espacio y tiempo
-        integrados en una misma arquitectura conceptual.
-      </p>
-    </div>
-  </section>
+<section id="tech" class="tech">
+  <img src="assets/images/tech.jpg" alt="Tecnología avanzada">
+  <div>
+    <h2>Tecnología</h2>
+    <p>Electrónica, sistemas híbridos y arquitectura conceptual.</p>
+  </div>
+</section>
 
-  <!-- PROYECTO -->
-  <section id="proyecto">
-    <h2>Proyecto</h2>
-    <div class="showcase">
-      <div class="card">Electrónica</div>
-      <div class="card">Espacio</div>
-      <div class="card">Conciencia</div>
-    </div>
-  </section>
+<section id="proyecto">
+  <h2>Proyecto</h2>
+  <div class="showcase">
+    <div class="card">Electrónica</div>
+    <div class="card">Espacio</div>
+    <div class="card">Conciencia</div>
+  </div>
+</section>
 
-  <footer id="contacto">
-    © 2064 · Proyecto CVΛL
-  </footer>
+<footer id="contacto">
+  © 2064 · Proyecto CVΛL
+</footer>
 
-  <script>
-    const sections = document.querySelectorAll("section");
+<script>
+  const sections = document.querySelectorAll("section");
 
-    const reveal = () => {
-      const trigger = window.innerHeight * 0.85;
-      sections.forEach(sec => {
-        const top = sec.getBoundingClientRect().top;
-        if (top < trigger) sec.classList.add("visible");
-      });
-    };
+  const reveal = () => {
+    const trigger = window.innerHeight * 0.85;
+    sections.forEach(sec => {
+      if (sec.getBoundingClientRect().top < trigger) {
+        sec.classList.add("visible");
+      }
+    });
+  };
 
-    window.addEventListener("scroll", reveal);
-    reveal();
+  window.addEventListener("scroll", reveal);
+  reveal();
 
-    document.getElementById("cta").onclick = () => {
-      document.getElementById("vision")
-        .scrollIntoView({ behavior: "smooth" });
-    };
-  </script>
+  document.getElementById("cta").onclick = () => {
+    document.getElementById("vision").scrollIntoView({ behavior: "smooth" });
+  };
+</script>
 
 </body>
 </html>
