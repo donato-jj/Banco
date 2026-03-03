@@ -301,7 +301,7 @@
 <script>
 'use strict';
 // ================================================================
-//  BioSci · Reconstruccion Academica en Biologia y Ciencia Moderna
+//  BioSci · Reconstrucción Académica en Biología y Ciencia Moderna
 //  v1.0 · HTML + CSS + Canvas 2D · JavaScript puro
 // ================================================================
 
@@ -311,40 +311,40 @@ const BASES       = ['A','T','C','G'];
 
 const GLOSSARY_DATA = [
   { term:'ADN (Acido Desoxirribonucleico)',
-    def:'Molecula portadora de la informacion genetica. Su estructura de doble helice antiparalela fue descrita por Watson y Crick (1953, Nature 171:737).' },
+    def:'Molecula portadora de la información genética. Su estructura de doble hélice antiparalela fue descrita por Watson y Crick (1953, Nature 171:737).' },
   { term:'Par de Bases (Watson-Crick)',
     def:'Adenina (A) se empareja con Timina (T) mediante 2 puentes de hidrogeno; Citosina (C) se empareja con Guanina (G) mediante 3. Regla de Chargaff: [A]=[T], [C]=[G].' },
-  { term:'Doble Helice',
-    def:'Estructura 3D del ADN B (forma fisiologica): dos cadenas antiparalelas enrolladas en espiral dextrogira. Diametro ~2 nm; ~10.5 pb por vuelta.' },
+  { term:'Doble Hélice',
+    def:'Estructura 3D del ADN B (forma fisiologica): dos cadenas antiparalelas enrolladas en espiral dextrogira. Diámetro ~2 nm; ~10.5 pb por vuelta.' },
   { term:'Surcos Mayor y Menor',
     def:'Espacios entre las dos cadenas. Surco mayor (~22 A) expone las bases a proteinas reguladoras. Surco menor (~12 A) mas estrecho. Representados visualmente de forma simplificada aqui.' },
-  { term:'Nucleosoma',
-    def:'Unidad estructural basica de la cromatina: ~147 pb de ADN enrollados ~1.65 veces alrededor de un octamero de histonas (Luger et al. 1997, Nature 389:251).' },
+  { term:'Núcleosoma',
+    def:'Unidad estructural básica de la cromatina: ~147 pb de ADN enrollados ~1.65 veces alrededor de un octámero de histonas (Luger et al. 1997, Nature 389:251).' },
   { term:'Empaquetamiento Cromatico',
-    def:'Jerarquia compactadora: ADN libre (2 nm) -> nucleosomas (11 nm) -> fibra 30 nm -> cromosoma condensado (~700 nm). Representado de forma simplificada aqui.' },
+    def:'Jerarquia compactadora: ADN libre (2 nm) -> núcleosomas (11 nm) -> fibra 30 nm -> cromosoma condensado (~700 nm). Representado de forma simplificada aqui.' },
   { term:'Mutacion por Sustitucion',
-    def:'Cambio de un unico nucleotido por otro. La mutacion aqui aplicada es una sustitucion simple con fines didacticos.' },
-  { term:'Relatividad General (Modelo Didactico)',
-    def:'Teoria de Einstein (1915): la gravedad como curvatura del espaciotiempo. El modelo visual aqui es una simplificacion didactica; NO es simulacion exacta de la metrica de Schwarzschild.' },
-  { term:'Geodesica (Modelo Didactico)',
-    def:'Trayectoria de minima longitud en el espaciotiempo curvado. Aqui aproximadas numericamente con un campo gravitacional simplificado. Solo valor didactico.' },
-  { term:'Genoma del Vacio (Metafora Artistica)',
-    def:'Concepto artistico/metaforico. No corresponde a ningun fenomeno cientifico real. Campo de ruido FBM procedural con fines esteticos.' },
+    def:'Cambio de un único núcleotido por otro. La mutacion aqui aplicada es una sustitucion simple con fines didácticos.' },
+  { term:'Relatividad General (Modelo Didáctico)',
+    def:'Teoría de Einstein (1915): la gravedad como curvatura del espaciotiempo. El modelo visual aqui es una simplificación didáctica; NO es simulación exacta de la métrica de Schwarzschild.' },
+  { term:'Geodésica (Modelo Didáctico)',
+    def:'Trayectoria de mínima longitud en el espaciotiempo curvado. Aqui aproximadas numéricamente con un campo gravitacional simplificado. Solo valor didáctico.' },
+  { term:'Genoma del Vacío (Metáfora Artistica)',
+    def:'Concepto artistico/metaforico. No corresponde a ningún fenómeno científico real. Campo de ruido FBM procedural con fines estéticos.' },
   { term:'FBM - Movimiento Browniano Fraccional',
-    def:'Tecnica matematica para generar ruido fractal sumando octavas de ruido coherente. Usada en la capa "Genoma del Vacio" con fines esteticos.' },
+    def:'Técnica matematica para generar ruido fractal sumando octavas de ruido coherente. Usada en la capa "Genoma del Vacío" con fines estéticos.' },
   { term:'Regla de Chargaff',
-    def:'Observacion experimental (Chargaff, 1950): en ADN bicatenario [A]=[T] y [C]=[G], independientemente de la especie. Consecuencia del emparejamiento Watson-Crick.' },
+    def:'Observación experimental (Chargaff, 1950): en ADN bicatenario [A]=[T] y [C]=[G], independientemente de la especie. Consecuencia del emparejamiento Watson-Crick.' },
 ];
 
 const PRES_STEPS = [
-  { layer:'bio', pkg:0,  badge:'sci',  msg:'1/8 — ADN libre (forma B): La doble helice en su estado extendido (~2 nm de diametro). Dos cadenas antiparalelas unidas por pares de bases complementarios (A-T, C-G). Arrastra para rotar; hover sobre los pares para detalles.' },
+  { layer:'bio', pkg:0,  badge:'sci',  msg:'1/8 — ADN libre (forma B): La doble hélice en su estado extendido (~2 nm de diámetro). Dos cadenas antiparalelas unidas por pares de bases complementarios (A-T, C-G). Arrastra para rotar; hover sobre los pares para detalles.' },
   { layer:'bio', pkg:0,  badge:'sci',  msg:'2/8 — Pares de bases: Adenina (verde) - Timina (rojo) con 2 puentes H. Citosina (azul) - Guanina (amarillo) con 3 puentes H. Regla de Chargaff: [A]=[T], [C]=[G].' },
-  { layer:'bio', pkg:32, badge:'sci',  msg:'3/8 — Nucleosomas: Al compactar el ADN, se enrolla alrededor de octameros de histonas (~147 pb / nucleosoma). Representacion abstracta simplificada; no modela la estructura atomica real.' },
-  { layer:'bio', pkg:68, badge:'sci',  msg:'4/8 — Fibra de 30 nm: Los nucleosomas se organizan en una fibra de orden superior. Representacion didactica.' },
-  { layer:'bio', pkg:96, badge:'sci',  msg:'5/8 — Cromosoma condensado: En mitosis/meiosis, la cromatina alcanza su maxima condensacion (~700 nm). La representacion en X es abstracta y didactica.' },
-  { layer:'chem',pkg:0,  badge:'sci',  msg:'6/8 — Capa Quimica: Representacion simplificada de moleculas con fuerzas basicas de atraccion/repulsion y membrana celular. No modela mecanismos, cinetica ni estructuras atomicas reales.' },
-  { layer:'phys',pkg:0,  badge:'meta', msg:'7/8 — Curvatura Espaciotemporal: Inspirada en la Relatividad General de Einstein (1915). La masa central curva la "tela" del espaciotiempo. Este modelo es didactico y no es una simulacion exacta.' },
-  { layer:'void',pkg:0,  badge:'art',  msg:'8/8 — Genoma del Vacio: Metafora artistica. Campo procedural basado en FBM (ruido fractal). No representa ningun fenomeno cientifico real. La influencia del ADN es puramente estetica.' },
+  { layer:'bio', pkg:32, badge:'sci',  msg:'3/8 — Núcleosomas: Al compactar el ADN, se enrolla alrededor de octámeros de histonas (~147 pb / núcleosoma). Representación abstracta simplificada; no modela la estructura atómica real.' },
+  { layer:'bio', pkg:68, badge:'sci',  msg:'4/8 — Fibra de 30 nm: Los núcleosomas se organizan en una fibra de orden superior. Representación didáctica.' },
+  { layer:'bio', pkg:96, badge:'sci',  msg:'5/8 — Cromosoma condensado: En mitosis/meiosis, la cromatina alcanza su máxima condensación (~700 nm). La representación en X es abstracta y didáctica.' },
+  { layer:'chem',pkg:0,  badge:'sci',  msg:'6/8 — Capa Química: Representación simplificada de moléculas con fuerzas básicas de atracción/repulsión y membrana celular. No modela mecanismos, cinética ni estructuras atómicas reales.' },
+  { layer:'phys',pkg:0,  badge:'meta', msg:'7/8 — Curvatura Espaciotemporal: Inspirada en la Relatividad General de Einstein (1915). La masa central curva la "tela" del espaciotiempo. Este modelo es didáctico y no es una simulación exacta.' },
+  { layer:'void',pkg:0,  badge:'art',  msg:'8/8 — Genoma del Vacío: Metáfora artística. Campo procedural basado en FBM (ruido fractal). No representa ningún fenómeno científico real. La influencia del ADN es puramente estética.' },
 ];
 
 // STATE
@@ -353,7 +353,7 @@ const S = {
   cam:{ rotY:0, rotX:0.28, zoom:1, drag:false, lastX:0, lastY:0 },
   dna:{ pairs:40, R:55, pitch:18, speed:0.01, seq:[], origSeq:[], showLabels:true,
         examMode:false, examScore:{correct:0,total:0}, packaging:0, mutRate:0.05, mutHistory:[] },
-  chem:{ n:15, attraction:0.5, repulsion:0.3, molecules:[], showMembrane:true, time:0 },
+  chem:{ n:15, attraction:0.5, repulsión:0.3, molecules:[], showMembrane:true, time:0 },
   phys:{ mass:5, intensity:0.5, scale:1.0, geodesics:true, grid:true, time:0 },
   void:{ mode:'field', influence:0.5, speed:0.015, density:30, particles:[], time:0 },
   hoveredPair:-1,
@@ -440,12 +440,12 @@ function drawBG(c1='#0d1520',c2='#060810') {
 function drawDNAHud() {
   const {seq,pairs,packaging}=S.dna;
   const pkg=packaging/100;
-  const pkgNames=['Helice libre (~2 nm)','Nucleosomas (~11 nm)','Fibra 30 nm','Cromosoma (~700 nm)'];
+  const pkgNames=['Hélice libre (~2 nm)','Núcleosomas (~11 nm)','Fibra 30 nm','Cromosoma (~700 nm)'];
   const pi=pkg<0.3?0:pkg<0.55?1:pkg<0.92?2:3;
   ctx.fillStyle='rgba(0,0,0,0.6)'; ctx.fillRect(10,10,345,62);
   ctx.strokeStyle='#1e3a5f'; ctx.lineWidth=1; ctx.strokeRect(10,10,345,62);
   ctx.fillStyle='#60a5fa'; ctx.font='bold 11px system-ui'; ctx.textAlign='left';
-  ctx.fillText('BioSci · Capa Biologica — Reconstruccion Academica',18,26);
+  ctx.fillText('BioSci · Capa Biologica — Reconstrucción Académica',18,26);
   ctx.fillStyle='#7a8090'; ctx.font='10px system-ui';
   ctx.fillText('Pares: '+pairs+' | Empaquetamiento: '+packaging+'% - '+pkgNames[pi],18,40);
   if(seq.length>0){
@@ -477,7 +477,7 @@ function drawChromosome() {
   ctx.beginPath(); ctx.ellipse(cx,cy,centR+6,centR,0,0,Math.PI*2);
   ctx.fillStyle='#a78bfa'; ctx.fill(); ctx.shadowBlur=0;
   ctx.fillStyle='#7a8090'; ctx.font='12px system-ui'; ctx.textAlign='center';
-  ctx.fillText('Cromosoma condensado — Representacion abstracta didactica',cx,cy+armH+centR+28);
+  ctx.fillText('Cromosoma condensado — Representación abstracta didáctica',cx,cy+armH+centR+28);
   drawDNAHud();
 }
 
@@ -505,7 +505,7 @@ function drawFiber(pkg) {
     ctx.fillStyle='#8b5cf6'; ctx.fill();
   }
   ctx.fillStyle='#7a8090'; ctx.font='12px system-ui'; ctx.textAlign='center';
-  ctx.fillText(t<0.5?'Fibra de 30 nm (representacion didactica)':'Fibra cromatica de orden superior',cx,cy+height/2+30);
+  ctx.fillText(t<0.5?'Fibra de 30 nm (representación didáctica)':'Fibra cromatica de orden superior',cx,cy+height/2+30);
   drawDNAHud();
 }
 
@@ -609,7 +609,7 @@ function drawChem() {
   const W=canvas.width, H=canvas.height;
   drawBG('#0a1505','#050a03');
   const cx=W/2, cy=H/2;
-  const {molecules,showMembrane,attraction,repulsion}=S.chem;
+  const {molecules,showMembrane,attraction,repulsión}=S.chem;
   for(const mol of molecules){
     let ax=0,ay=0;
     const dx=cx-mol.x, dy=cy-mol.y, d=Math.hypot(dx,dy)+0.001;
@@ -617,7 +617,7 @@ function drawChem() {
     for(const o of molecules){
       if(o===mol) continue;
       const ex=mol.x-o.x, ey=mol.y-o.y, ed=Math.hypot(ex,ey)+0.001;
-      if(ed<55){ax+=(ex/ed)*repulsion*0.55/ed; ay+=(ey/ed)*repulsion*0.55/ed;}
+      if(ed<55){ax+=(ex/ed)*repulsión*0.55/ed; ay+=(ey/ed)*repulsión*0.55/ed;}
     }
     mol.vx=mol.vx*0.97+ax*0.016; mol.vy=mol.vy*0.97+ay*0.016;
     mol.x+=mol.vx; mol.y+=mol.vy;
@@ -630,7 +630,7 @@ function drawChem() {
     ctx.strokeStyle='rgba(96,165,250,0.28)'; ctx.lineWidth=10; ctx.stroke();
     ctx.strokeStyle='rgba(96,165,250,0.12)'; ctx.lineWidth=18; ctx.stroke();
   }
-  [{dx:38,dy:-18,rx:26,ry:16,color:'#4ade80',label:'Nucleo (abstraccion)'},
+  [{dx:38,dy:-18,rx:26,ry:16,color:'#4ade80',label:'Núcleo (abstraccion)'},
    {dx:-55,dy:22,rx:20,ry:11,color:'#f87171',label:'Mitocondria'},
    {dx:28,dy:42,rx:15,ry:9,color:'#60a5fa',label:'RE (abstraccion)'}].forEach(o=>{
     ctx.beginPath(); ctx.ellipse(cx+o.dx,cy+o.dy,o.rx,o.ry,0.3,0,Math.PI*2);
@@ -649,7 +649,7 @@ function drawChem() {
     ctx.textAlign='center'; ctx.fillText(mol.label,mol.x,mol.y+3);
   }
   ctx.fillStyle='#f59e0b'; ctx.font='11px system-ui'; ctx.textAlign='center';
-  ctx.fillText('Representacion simplificada: no modela mecanismos quimicos reales.',W/2,H-18);
+  ctx.fillText('Representación simplificada: no modela mecanismos quimicos reales.',W/2,H-18);
   S.chem.time++;
 }
 
@@ -704,9 +704,9 @@ function drawPhys() {
     }
   }
   ctx.fillStyle='#6b7280'; ctx.font='11px system-ui'; ctx.textAlign='center';
-  ctx.fillText('Curvatura espaciotemporal — Modelo didactico inspirado en Relatividad General (Einstein, 1915)',W/2,H-28);
+  ctx.fillText('Curvatura espaciotemporal — Modelo didáctico inspirado en Relatividad General (Einstein, 1915)',W/2,H-28);
   ctx.fillStyle='#f59e0b'; ctx.font='10px system-ui';
-  ctx.fillText('No es simulacion exacta. Solo fines educativos.',W/2,H-12);
+  ctx.fillText('No es simulación exacta. Solo fines educativos.',W/2,H-12);
   S.phys.time++;
 }
 
@@ -743,9 +743,9 @@ function drawVoid() {
   }
   ctx.fillStyle='rgba(0,0,0,0.55)'; ctx.fillRect(0,H-42,W,42);
   ctx.fillStyle='#c084fc'; ctx.font='11px system-ui'; ctx.textAlign='center';
-  ctx.fillText('"Genoma del Vacio" — Metafora artistica. No representa ningun fenomeno cientifico real.',W/2,H-24);
+  ctx.fillText('"Genoma del Vacío" — Metáfora artística. No representa ningún fenómeno científico real.',W/2,H-24);
   ctx.fillStyle='#6b7280'; ctx.font='10px system-ui';
-  ctx.fillText('Campo procedural FBM · La influencia ADN es puramente visual/estetica, sin causalidad cientifica.',W/2,H-8);
+  ctx.fillText('Campo procedural FBM · La influencia ADN es puramente visual/estética, sin causalidad científica.',W/2,H-8);
   S.void.time++;
 }
 
@@ -880,9 +880,9 @@ function setLayer(layer){
   document.querySelectorAll('.ctrl-panel').forEach(p=>p.classList.remove('active'));
   document.getElementById('ctrl-'+layer).classList.add('active');
   const badge=document.getElementById('layer-badge');
-  if(layer==='bio'||layer==='chem'){badge.className='sci';badge.textContent='Consenso Cientifico (Simplificado)';}
-  else if(layer==='phys'){badge.className='meta';badge.textContent='Modelo Didactico — No exacto';}
-  else{badge.className='art';badge.textContent='Metafora Artistica';}
+  if(layer==='bio'||layer==='chem'){badge.className='sci';badge.textContent='Consenso Científico (Simplificado)';}
+  else if(layer==='phys'){badge.className='meta';badge.textContent='Modelo Didáctico — No exacto';}
+  else{badge.className='art';badge.textContent='Metáfora Artistica';}
   badge.id='layer-badge';
   if(layer==='chem'&&!S.chem.molecules.length) initMolecules();
   if(layer==='void'&&!S.void.particles.length) initVoidParticles();
@@ -900,13 +900,13 @@ bindSlider('slPitch','valPitch',v=>{S.dna.pitch=v;});
 bindSlider('slSpeed','valSpeed',v=>{S.dna.speed=v*0.001;});
 bindSlider('slPkg','valPkg',v=>{
   S.dna.packaging=Math.round(v);
-  const names=['Helice libre (ADN B)','Nucleosomas (~11 nm)','Fibra 30 nm','Cromosoma (~700 nm)'];
+  const names=['Hélice libre (ADN B)','Núcleosomas (~11 nm)','Fibra 30 nm','Cromosoma (~700 nm)'];
   document.getElementById('pkgLabel').textContent=names[v<30?0:v<55?1:v<92?2:3];
 });
 bindSlider('slMut','valMut',v=>{S.dna.mutRate=v/100;},v=>v+'%');
 bindSlider('slMols','valMols',v=>{S.chem.n=Math.round(v);initMolecules();});
 bindSlider('slAttr','valAttr',v=>{S.chem.attraction=v/100;});
-bindSlider('slRepul','valRepul',v=>{S.chem.repulsion=v/100;});
+bindSlider('slRepul','valRepul',v=>{S.chem.repulsión=v/100;});
 bindSlider('slMass','valMass',v=>{S.phys.mass=v;});
 bindSlider('slPhysInt','valPhysInt',v=>{S.phys.intensity=v/100;});
 bindSlider('slPhysScale','valPhysScale',v=>{S.phys.scale=v/100;},v=>(v/100).toFixed(1));
@@ -942,7 +942,7 @@ document.getElementById('btnMemb').addEventListener('click',()=>{
 });
 document.getElementById('btnGeo').addEventListener('click',()=>{
   S.phys.geodesics=!S.phys.geodesics;
-  document.getElementById('btnGeo').textContent='Geodesicas: '+(S.phys.geodesics?'ON':'OFF');
+  document.getElementById('btnGeo').textContent='Geodésicas: '+(S.phys.geodesics?'ON':'OFF');
   document.getElementById('btnGeo').classList.toggle('active',S.phys.geodesics);
 });
 document.getElementById('btnGrid').addEventListener('click',()=>{
@@ -952,7 +952,7 @@ document.getElementById('btnGrid').addEventListener('click',()=>{
 });
 document.getElementById('btnVoidMode').addEventListener('click',()=>{
   S.void.mode=S.void.mode==='field'?'particles':'field';
-  document.getElementById('btnVoidMode').textContent='Modo: '+(S.void.mode==='field'?'Campo':'Particulas');
+  document.getElementById('btnVoidMode').textContent='Modo: '+(S.void.mode==='field'?'Campo':'Partículas');
   if(S.void.mode==='particles') initVoidParticles();
 });
 
@@ -973,7 +973,7 @@ function applyPresStep(){
   if(step.pkg!==undefined&&step.layer==='bio'){
     S.dna.packaging=step.pkg;
     document.getElementById('slPkg').value=step.pkg; document.getElementById('valPkg').textContent=step.pkg;
-    const names=['Helice libre (ADN B)','Nucleosomas (~11 nm)','Fibra 30 nm','Cromosoma (~700 nm)'];
+    const names=['Hélice libre (ADN B)','Núcleosomas (~11 nm)','Fibra 30 nm','Cromosoma (~700 nm)'];
     document.getElementById('pkgLabel').textContent=names[step.pkg<30?0:step.pkg<55?1:step.pkg<92?2:3];
   }
 }
@@ -991,7 +991,7 @@ document.getElementById('btnExport').addEventListener('click',()=>{
   const {seq,pairs,R,pitch,packaging,mutHistory,examScore}=S.dna;
   const c={A:0,T:0,C:0,G:0}; seq.forEach(p=>{c[p.a]++;c[p.b]++;});
   const tot=seq.length*2;
-  const pkgNames=['Helice libre (~2 nm)','Nucleosomas (~11 nm)','Fibra 30 nm','Cromosoma condensado (~700 nm)'];
+  const pkgNames=['Hélice libre (~2 nm)','Núcleosomas (~11 nm)','Fibra 30 nm','Cromosoma condensado (~700 nm)'];
   const pkgLabel=pkgNames[packaging<30?0:packaging<55?1:packaging<92?2:3];
   const seqStr=seq.map((p,i)=>(i+1)+':'+p.a+'-'+p.b).join('  ');
   const mutStr=mutHistory.length?mutHistory.map(m=>'  Pos '+(m.i+1)+': '+m.from+' -> '+m.to+'  ('+m.time+')').join('\n'):'  Sin mutaciones registradas.';
@@ -1003,8 +1003,8 @@ document.getElementById('btnExport').addEventListener('click',()=>{
     '',
     'SECCION 1: PARAMETROS ADN',
     '  Pares de bases   : '+pairs,
-    '  Radio helicoidal : '+R+' (representacion normalizada)',
-    '  Pitch por par    : '+pitch+' (representacion)',
+    '  Radio helicoidal : '+R+' (representación normalizada)',
+    '  Pitch por par    : '+pitch+' (representación)',
     '  Empaquetamiento  : '+packaging+'% -> '+pkgLabel,
     '',
     'SECCION 2: COMPOSICION DE BASES',
@@ -1021,15 +1021,15 @@ document.getElementById('btnExport').addEventListener('click',()=>{
     mutStr,
     '',
     'SECCION 5: MODO EXAMEN',
-    '  Puntuacion: '+examScore.correct+'/'+examScore.total+(examScore.total>0?' ('+((examScore.correct/examScore.total*100)|0)+'%)':''),
+    '  Puntuación: '+examScore.correct+'/'+examScore.total+(examScore.total>0?' ('+((examScore.correct/examScore.total*100)|0)+'%)':''),
     '',
     'SECCION 6: NOTAS METODOLOGICAS',
-    '  - Visualizacion 3D en Canvas 2D con proyeccion perspectiva simple.',
-    '  - Surcos mayor/menor: representados por offset visual; no modelan geometria atomica.',
-    '  - Nucleosomas: discos abstractos; no modelan la estructura del octamero de histonas real.',
-    '  - Capa fisica: modelo didactico simplificado, no simulacion de la metrica de Schwarzschild.',
-    '  - Genoma del Vacio: metafora artistica, sin base cientifica directa.',
-    '  - Todas las dimensiones son representaciones normalizadas con fines didacticos.',
+    '  - Visualización 3D en Canvas 2D con proyeccion perspectiva simple.',
+    '  - Surcos mayor/menor: representados por offset visual; no modelan geometría atómica.',
+    '  - Núcleosomas: discos abstractos; no modelan la estructura del octámero de histonas real.',
+    '  - Capa física: modelo didáctico simplificado, no simulación de la métrica de Schwarzschild.',
+    '  - Genoma del Vacío: metáfora artística, sin base científica directa.',
+    '  - Todas las dimensiones son representaciónes normalizadas con fines didácticos.',
     '',
     'SECCION 7: REFERENCIAS',
     '  Watson & Crick (1953). Nature 171:737-738.',
