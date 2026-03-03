@@ -318,10 +318,10 @@ const GLOSSARY_DATA = [
     def:'Estructura 3D del ADN B (forma fisiologica): dos cadenas antiparalelas enrolladas en espiral dextrogira. Diámetro ~2 nm; ~10.5 pb por vuelta.' },
   { term:'Surcos Mayor y Menor',
     def:'Espacios entre las dos cadenas. Surco mayor (~22 A) expone las bases a proteinas reguladoras. Surco menor (~12 A) mas estrecho. Representados visualmente de forma simplificada aqui.' },
-  { term:'Núcleosoma',
+  { term:'Nucleosoma',
     def:'Unidad estructural básica de la cromatina: ~147 pb de ADN enrollados ~1.65 veces alrededor de un octámero de histonas (Luger et al. 1997, Nature 389:251).' },
   { term:'Empaquetamiento Cromatico',
-    def:'Jerarquia compactadora: ADN libre (2 nm) -> núcleosomas (11 nm) -> fibra 30 nm -> cromosoma condensado (~700 nm). Representado de forma simplificada aqui.' },
+    def:'Jerarquia compactadora: ADN libre (2 nm) -> nucleosomas (11 nm) -> fibra 30 nm -> cromosoma condensado (~700 nm). Representado de forma simplificada aqui.' },
   { term:'Mutacion por Sustitucion',
     def:'Cambio de un único núcleotido por otro. La mutacion aqui aplicada es una sustitucion simple con fines didácticos.' },
   { term:'Relatividad General (Modelo Didáctico)',
@@ -339,8 +339,8 @@ const GLOSSARY_DATA = [
 const PRES_STEPS = [
   { layer:'bio', pkg:0,  badge:'sci',  msg:'1/8 — ADN libre (forma B): La doble hélice en su estado extendido (~2 nm de diámetro). Dos cadenas antiparalelas unidas por pares de bases complementarios (A-T, C-G). Arrastra para rotar; hover sobre los pares para detalles.' },
   { layer:'bio', pkg:0,  badge:'sci',  msg:'2/8 — Pares de bases: Adenina (verde) - Timina (rojo) con 2 puentes H. Citosina (azul) - Guanina (amarillo) con 3 puentes H. Regla de Chargaff: [A]=[T], [C]=[G].' },
-  { layer:'bio', pkg:32, badge:'sci',  msg:'3/8 — Núcleosomas: Al compactar el ADN, se enrolla alrededor de octámeros de histonas (~147 pb / núcleosoma). Representación abstracta simplificada; no modela la estructura atómica real.' },
-  { layer:'bio', pkg:68, badge:'sci',  msg:'4/8 — Fibra de 30 nm: Los núcleosomas se organizan en una fibra de orden superior. Representación didáctica.' },
+  { layer:'bio', pkg:32, badge:'sci',  msg:'3/8 — Nucleosomas: Al compactar el ADN, se enrolla alrededor de octámeros de histonas (~147 pb / nucleosoma). Representación abstracta simplificada; no modela la estructura atómica real.' },
+  { layer:'bio', pkg:68, badge:'sci',  msg:'4/8 — Fibra de 30 nm: Los nucleosomas se organizan en una fibra de orden superior. Representación didáctica.' },
   { layer:'bio', pkg:96, badge:'sci',  msg:'5/8 — Cromosoma condensado: En mitosis/meiosis, la cromatina alcanza su máxima condensación (~700 nm). La representación en X es abstracta y didáctica.' },
   { layer:'chem',pkg:0,  badge:'sci',  msg:'6/8 — Capa Química: Representación simplificada de moléculas con fuerzas básicas de atracción/repulsión y membrana celular. No modela mecanismos, cinética ni estructuras atómicas reales.' },
   { layer:'phys',pkg:0,  badge:'meta', msg:'7/8 — Curvatura Espaciotemporal: Inspirada en la Relatividad General de Einstein (1915). La masa central curva la "tela" del espaciotiempo. Este modelo es didáctico y no es una simulación exacta.' },
@@ -440,7 +440,7 @@ function drawBG(c1='#0d1520',c2='#060810') {
 function drawDNAHud() {
   const {seq,pairs,packaging}=S.dna;
   const pkg=packaging/100;
-  const pkgNames=['Hélice libre (~2 nm)','Núcleosomas (~11 nm)','Fibra 30 nm','Cromosoma (~700 nm)'];
+  const pkgNames=['Hélice libre (~2 nm)','Nucleosomas (~11 nm)','Fibra 30 nm','Cromosoma (~700 nm)'];
   const pi=pkg<0.3?0:pkg<0.55?1:pkg<0.92?2:3;
   ctx.fillStyle='rgba(0,0,0,0.6)'; ctx.fillRect(10,10,345,62);
   ctx.strokeStyle='#1e3a5f'; ctx.lineWidth=1; ctx.strokeRect(10,10,345,62);
@@ -630,9 +630,9 @@ function drawChem() {
     ctx.strokeStyle='rgba(96,165,250,0.28)'; ctx.lineWidth=10; ctx.stroke();
     ctx.strokeStyle='rgba(96,165,250,0.12)'; ctx.lineWidth=18; ctx.stroke();
   }
-  [{dx:38,dy:-18,rx:26,ry:16,color:'#4ade80',label:'Núcleo (abstraccion)'},
+  [{dx:38,dy:-18,rx:26,ry:16,color:'#4ade80',label:'Núcleo (abstracción)'},
    {dx:-55,dy:22,rx:20,ry:11,color:'#f87171',label:'Mitocondria'},
-   {dx:28,dy:42,rx:15,ry:9,color:'#60a5fa',label:'RE (abstraccion)'}].forEach(o=>{
+   {dx:28,dy:42,rx:15,ry:9,color:'#60a5fa',label:'RE (abstracción)'}].forEach(o=>{
     ctx.beginPath(); ctx.ellipse(cx+o.dx,cy+o.dy,o.rx,o.ry,0.3,0,Math.PI*2);
     ctx.fillStyle=o.color+'2a'; ctx.fill(); ctx.strokeStyle=o.color+'88'; ctx.lineWidth=1.5; ctx.stroke();
     ctx.fillStyle=o.color; ctx.font='9px system-ui'; ctx.textAlign='center';
@@ -900,7 +900,7 @@ bindSlider('slPitch','valPitch',v=>{S.dna.pitch=v;});
 bindSlider('slSpeed','valSpeed',v=>{S.dna.speed=v*0.001;});
 bindSlider('slPkg','valPkg',v=>{
   S.dna.packaging=Math.round(v);
-  const names=['Hélice libre (ADN B)','Núcleosomas (~11 nm)','Fibra 30 nm','Cromosoma (~700 nm)'];
+  const names=['Hélice libre (ADN B)','Nucleosomas (~11 nm)','Fibra 30 nm','Cromosoma (~700 nm)'];
   document.getElementById('pkgLabel').textContent=names[v<30?0:v<55?1:v<92?2:3];
 });
 bindSlider('slMut','valMut',v=>{S.dna.mutRate=v/100;},v=>v+'%');
@@ -973,7 +973,7 @@ function applyPresStep(){
   if(step.pkg!==undefined&&step.layer==='bio'){
     S.dna.packaging=step.pkg;
     document.getElementById('slPkg').value=step.pkg; document.getElementById('valPkg').textContent=step.pkg;
-    const names=['Hélice libre (ADN B)','Núcleosomas (~11 nm)','Fibra 30 nm','Cromosoma (~700 nm)'];
+    const names=['Hélice libre (ADN B)','Nucleosomas (~11 nm)','Fibra 30 nm','Cromosoma (~700 nm)'];
     document.getElementById('pkgLabel').textContent=names[step.pkg<30?0:step.pkg<55?1:step.pkg<92?2:3];
   }
 }
@@ -991,7 +991,7 @@ document.getElementById('btnExport').addEventListener('click',()=>{
   const {seq,pairs,R,pitch,packaging,mutHistory,examScore}=S.dna;
   const c={A:0,T:0,C:0,G:0}; seq.forEach(p=>{c[p.a]++;c[p.b]++;});
   const tot=seq.length*2;
-  const pkgNames=['Hélice libre (~2 nm)','Núcleosomas (~11 nm)','Fibra 30 nm','Cromosoma condensado (~700 nm)'];
+  const pkgNames=['Hélice libre (~2 nm)','Nucleosomas (~11 nm)','Fibra 30 nm','Cromosoma condensado (~700 nm)'];
   const pkgLabel=pkgNames[packaging<30?0:packaging<55?1:packaging<92?2:3];
   const seqStr=seq.map((p,i)=>(i+1)+':'+p.a+'-'+p.b).join('  ');
   const mutStr=mutHistory.length?mutHistory.map(m=>'  Pos '+(m.i+1)+': '+m.from+' -> '+m.to+'  ('+m.time+')').join('\n'):'  Sin mutaciones registradas.';
@@ -1026,7 +1026,7 @@ document.getElementById('btnExport').addEventListener('click',()=>{
     'SECCION 6: NOTAS METODOLOGICAS',
     '  - Visualización 3D en Canvas 2D con proyeccion perspectiva simple.',
     '  - Surcos mayor/menor: representados por offset visual; no modelan geometría atómica.',
-    '  - Núcleosomas: discos abstractos; no modelan la estructura del octámero de histonas real.',
+    '  - Nucleosomas: discos abstractos; no modelan la estructura del octámero de histonas real.',
     '  - Capa física: modelo didáctico simplificado, no simulación de la métrica de Schwarzschild.',
     '  - Genoma del Vacío: metáfora artística, sin base científica directa.',
     '  - Todas las dimensiones son representaciónes normalizadas con fines didácticos.',
