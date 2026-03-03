@@ -1,273 +1,72 @@
-      
-    <!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Proyecto 2064 · Tecnología & Futuro</title>
+# BioSci · Reconstrucción Académica en Biología y Ciencia Moderna
 
-  <!-- ================== CSS ================== -->
-  <style>
-    :root {
-      --bg: #0b0e14;
-      --bg-dark: #06080d;
-      --primary: #00bcd4;
-      --text: #eaeaea;
-      --muted: #9aa0a6;
-    }
+Aplicación web de reconstrucción académica que combina biología molecular, química y física en un sistema interactivo de capas con trazabilidad y distinción ciencia/metáfora.
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+## Modo de uso
 
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+Abre `index.html` directamente en el navegador. No requiere servidor, build ni dependencias externas.
 
-    /* ===== HEADER ===== */
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-      background: rgba(11,14,20,0.9);
-      backdrop-filter: blur(6px);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-    }
+## Capas de visualización
 
-    .logo {
-      font-size: 1.2rem;
-      font-weight: bold;
-      letter-spacing: 3px;
-    }
+### 1. ADN / Biología (Consenso Científico - Simplificado)
+- Doble hélice paramétrica con N pares de bases (10-120)
+- Pares Watson-Crick: A-T (2 puentes H, verde/rojo), C-G (3 puentes H, azul/amarillo)
+- Representación de surcos mayor/menor por offset visual (simplificado)
+- **Slider de empaquetamiento (0-100%):**
+  - 0%: Hélice libre (ADN B, ~2 nm)
+  - ~30%: Nucleosomas (representación abstracta de histonas)
+  - ~60%: Fibra de 30 nm (representación didáctica)
+  - ~96%: Cromosoma condensado (representación abstracta)
+- Hover/click sobre pares de bases -> tooltip con tipo, índice, puentes H
+- **Modo Examen:** oculta labels, al hacer click pide identificar la base; registra puntuación
+- **Mutaciones:** aplica sustituciones simples con historial antes/después
+- Controles: radio, pitch, velocidad de rotación, toggle de labels, pausa
+- Arrastrar para rotar en 3D; rueda del ratón para zoom
 
-    nav a {
-      color: var(--text);
-      text-decoration: none;
-      margin-left: 1.5rem;
-      font-size: 0.95rem;
-    }
+### 2. Química (Consenso Científico - Simplificado)
+- Moléculas instanciadas (H2O, ATP, Na+, K+, Cl-, Glu) con físicas de atracción/repulsión
+- Membrana celular semi-transparente pulsante
+- 3 organelos abstractos (núcleo, mitocondria, RE)
+- **NOTA:** Representación simplificada; no modela mecanismos reales, cinética ni estructuras atómicas
 
-    /* ===== HERO ===== */
-    .hero {
-      height: 100vh;
-      position: relative;
-      display: grid;
-      place-items: center;
-      text-align: center;
-    }
+### 3. Física / Curvatura Espaciotemporal (Modelo Didáctico - NO exacto)
+- Grilla de espaciotiempo con deformacion por masa central
+- 8 geodésicas aproximadas con integración numérica simple
+- Controles: masa, intensidad, escala
+- **NOTA:** Modelo didáctico inspirado en Relatividad General (Einstein, 1915). NO es simulación de la métrica de Schwarzschild ni geodésicas reales. No atribuir resultados como fisica exacta.
 
-    .hero img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.35;
-    }
+### 4. Genoma del Vacío (Metáfora Artistica)
+- Campo procedural FBM (Fractional Brownian Motion) en dos modos: campo de color y partículas
+- Influencia visual del ADN (composición de bases -> matiz de color, sin causalidad científica)
+- **NOTA:** Metáfora artística. No representa ningún fenómeno científico real.
 
-    .hero-content {
-      position: relative;
-      max-width: 680px;
-      padding: 2rem;
-    }
+## Funciónes del sistema
 
-    .hero h1 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      margin-bottom: 1rem;
-    }
+| Función | Descripción |
+|---------|-------------|
+| Presentación guiada | 8 pasos que recorren todas las capas con textos académicos |
+| Glosario | 12 términos con definiciones rigorosas y referencias |
+| Exportar reporte | Genera un archivo .txt con parámetros, secuencia, composición, mutaciones y notas metodológicas |
+| Modo Examen | Quizz de identificación de bases con puntuación |
 
-    .hero p {
-      color: var(--muted);
-      font-size: 1.1rem;
-    }
+## Principio rector: Ciencia vs Metáfora
 
-    .hero button {
-      margin-top: 2rem;
-      padding: 0.9rem 2.5rem;
-      background: var(--primary);
-      border: none;
-      font-weight: bold;
-      cursor: pointer;
-      border-radius: 4px;
-    }
+Cada capa esta claramente etiquetada en la UI:
+- **Verde (Consenso Científico):** ADN, núcleosomas, empaquetamiento, química molecular
+- **Amarillo (Modelo Didáctico):** Curvatura espaciotemporal (inspirada, no exacta)
+- **Morado (Metáfora Artistica):** Genoma del Vacío (campo procedural FBM)
 
-    /* ===== SECTIONS ===== */
-    section {
-      padding: 7rem 2rem;
-      max-width: 1200px;
-      margin: auto;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.8s ease;
-    }
+## Referencias
 
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+- Watson, J.D. & Crick, F.H.C. (1953). *Molecular structure of nucleic acids.* Nature 171:737-738.
+- Luger, K. et al. (1997). *Crystal structure of the núcleosome core particle.* Nature 389:251-260.
+- Chargaff, E. (1950). *Chemical specificity of nucleic acids.* Experientia 6:201-209.
+- Einstein, A. (1915). *Die Feldgleichungen der Gravitation.* Preuss. Akad. Wiss. Berlin.
+- NCBI Gene Database: https://www.ncbi.nlm.nih.gov/gene
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 3rem;
-      align-items: center;
-    }
+## Stack técnico
 
-    .grid img {
-      width: 100%;
-      border-radius: 14px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-    }
-
-    section.dark {
-      background: var(--bg-dark);
-      max-width: 100%;
-    }
-
-    section.dark > * {
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    /* ===== CARDS ===== */
-    .cards {
-      margin-top: 3rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 2rem;
-    }
-
-    .card {
-      background: #111622;
-      padding: 2.5rem 2rem;
-      border-radius: 16px;
-      text-align: center;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.35);
-    }
-
-    .card h3 {
-      margin-bottom: 0.8rem;
-    }
-
-    .card p {
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    /* ===== FOOTER ===== */
-    footer {
-      padding: 3rem 2rem;
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.9rem;
-      background: #05070c;
-    }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 768px) {
-      nav a {
-        margin-left: 1rem;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <!-- ===== HEADER ===== -->
-  <header>
-    <div class="logo">2064</div>
-    <nav>
-      <a href="#concepto">Concepto</a>
-      <a href="#tecnologia">Tecnología</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
-  </header>
-
-  <!-- ===== HERO ===== -->
-  <section class="hero visible">
-    <img src="assets/img/IMG_20260207_180810_846.jpg" alt="Tecnología futura">
-    <div class="hero-content">
-      <h1>Ingeniería del Futuro</h1>
-      <p>Tiempo, espacio y electrónica convergen en el año 2064.</p>
-      <button onclick="document.getElementById('concepto').scrollIntoView({behavior:'smooth'})">
-        Explorar
-      </button>
-    </div>
-  </section>
-
-  <!-- ===== CONCEPTO ===== -->
-  <section id="concepto">
-    <div class="grid">
-      <img src="assets/img/IMG_20260207_180408_501.jpg" alt="Concepto espacial">
-      <div>
-        <h2>Concepto</h2>
-        <p>
-          Este proyecto representa una visión realista del futuro donde la
-          ingeniería, la ciencia y la exploración espacial se integran en un
-          mismo sistema narrativo, tecnológico y visual.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== TECNOLOGIA ===== -->
-  <section id="tecnologia" class="dark">
-    <h2>Tecnología Aplicada</h2>
-    <div class="cards">
-      <div class="card">
-        <h3>Arduino & Electrónica</h3>
-        <p>Procesamiento físico, control y sistemas embebidos.</p>
-      </div>
-      <div class="card">
-        <h3>Satélites & Espacio</h3>
-        <p>Comunicación orbital, exploración y datos en tiempo real.</p>
-      </div>
-      <div class="card">
-        <h3>Tiempo & Futuro</h3>
-        <p>Diseño especulativo basado en tecnología real.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== FOOTER ===== -->
-  <footer id="contacto">
-    <p>Proyecto 2064 © <span id="year"></span></p>
-    <p>Contacto · Redes · Información</p>
-  </footer>
-
-  <!-- ================== JS ================== -->
-  <script>
-    // Año automático
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Animaciones al hacer scroll
-    const sections = document.querySelectorAll("section");
-
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        }
-      });
-    }, { threshold: 0.2 });
-
-    sections.forEach(sec => {
-      if (!sec.classList.contains("hero")) {
-        observer.observe(sec);
-      }
-    });
-  </script>
-
-</body>
-</html>
+- HTML5 + CSS3 + Canvas 2D API + JavaScript ES2020 (sin dependencias externas)
+- Proyección 3D perspectiva manual (sin WebGL)
+- Renderizado via requestAnimationFrame
+- Ruido procedural FBM con hash determinístico
